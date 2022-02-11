@@ -11,9 +11,13 @@ Pick.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    user_name: {
+    user_id: {
       type: DataTypes.STRING,
       allowNull: false,
+      references: {
+        model: 'user',
+        key: 'id',
+      },
     },
     take_id: {
       type: DataTypes.INTEGER,
