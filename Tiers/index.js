@@ -1,19 +1,57 @@
-const hierachy = hierachy()
+// const fs = require('fs');
 
-let totalPoints = 0;
+const Fan = require ('./fan');
+const Member = require ('./member');
+const RisingStar = require ('./risingStar');
+const Influencer = require ('./influencer');
+const AllAccess = require ('./allAccess');
 
 
- const hierachy = () => {  
-    if ( totalPoints >=2 && totalPoints< 5){
-        console.log(`You are a ${getRole()}`)
+// const hierachy = hierachy()
+
+console.log('Program Starting');
+
+
+let totalPoints = 10;
+
+const ranking = new Fan 
+const ranking2 = new Member
+const ranking3 = new RisingStar
+const ranking4 = new Influencer
+const ranking5 = new AllAccess
+ 
+const hierachy = () => {  
+    if ( totalPoints >= 2 && totalPoints < 5){
+        
+       
+    console.log(`You are a ${ranking2.getRole()}`)
     
     }else if
-    (totalPoints = >=5 && < 8){
-       console.log(`You are a ${getRole()}`)
+        (totalPoints  >=5 && totalPoints < 8){
+        console.log(`You are a ${ranking3.getRole()}`)
     
+    }else if
     
+    (totalPoints  >=8 && totalPoints < 10){
+
+    console.log(`You are a ${ranking4.getRole()}`)
     
+    }else if
+    (totalPoints >=10 ){
+
+       console.log(`You are a ${ranking5.getRole()}`)
+
+    }else{
+          
+    (totalPoints  >=0 && totalPoints < 2)
+
+        console.log(`You are a ${ranking.getRole()}`);
+    }
+}
     
+hierachy();
+    
+console.log('Program ending');
     
     
     // () =>
@@ -36,8 +74,8 @@ let totalPoints = 0;
 
 // })
 
-fan();
-member();
-risingStar() 
-influencer() 
-allAccess()
+// fan();
+// member();
+// risingStar() 
+// influencer() 
+// allAccess()

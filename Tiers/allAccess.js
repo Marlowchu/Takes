@@ -1,7 +1,4 @@
-class AllAccess {
-    constructor(points) {
-        this.points = points;
-    } 
+class AllAccess { 
     getRole (){
         return 'All Access'
     }  
