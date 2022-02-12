@@ -51,5 +51,18 @@
     "user_id": "3",
     "take_id": 6
     
+  },
+  {
+    "user_id": "2",
+    "take_id": 1
+  },
+  {
+    "user_id": "3",
+    "take_id": 3
+  
+  },
+  {
+    "user_id": "3",
+    "take_id": 6
   }
 ]

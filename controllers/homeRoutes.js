@@ -7,45 +7,64 @@ const { Take, User, Comment, Pick } = require('../models');
 router.get('/test', async (req, res) => {
   try {
     // Get all projects and JOIN with user data
-    const projectData = await User.findAll({
+    const projectData = await Take.findAll({
 
-      attributes: ["id",'user_name'],
+      attributes: ["name", "description"],
       include: [
-        // {
-        //   model: Take,
-        //   // attributes: ['user_name'],
-        // },
-        // {
-        //   model: Comment,
-        //   // attributes: ['name', 'text'],
-        // },
+      
         {
-          model: Pick,
-          attributes: ["take_id"],
+          model: Comment,
+          attributes: ["user_name", "text"],
         },
       ],
-      // [{ model: Category},{ model: Tag}],
     });
 
     // Serialize data so the template can read it
     const projects = projectData.map((project) => project.get({ plain: true }));
 
-
     res.send (projects);
-    // Pass serialized data and session flag into template
-    // res.render('homepage', { 
-    //   projects, 
-    //   logged_in: req.session.logged_in 
-    // });
+   
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
 
+router.get('/takelikes', async (req, res) => {
+  try {
+    // Get all projects and JOIN with user data
+    const projectData = await Take.findAll({
+
+      attributes: ["name"],
+      include: [
+        {
+          model: Pick,
+        },
+      ],
+    });
+
+    // Serialize data so the template can read it
+    const projects = projectData.map((project) => project.get({ plain: true }));
+
+  let take = []
+  // let lenght = []
+  projects.forEach(item => {
+
+    let num = item.picks.length
+    take.push ([item.name, num])
+    
+  });
+
+    res.send (take);
+
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 
 // route to show people who like the same thinngs you do
-router.get('/connect/:id', async (req, res) => {
+router.get('/connects/:id', async (req, res) => {
   try {
     const projectData = await User.findByPk( req.params.id, {
 
@@ -69,18 +88,14 @@ router.get('/connect/:id', async (req, res) => {
     // creating a array with only the users picks
      projects.picks.forEach(item => { myPicks.push (item.take_id)
 
-   
-   
       
     });
 
-   
       // Get all users and picks
      const pullData = await User.findAll({
 
       attributes: ["id",'user_name'],
       include: [
-      
         {
           model: Pick,
           attributes: ["take_id"],
@@ -104,7 +119,6 @@ router.get('/connect/:id', async (req, res) => {
           // iterate through my picks
           myPicks.forEach(item =>{
 
-           
             // iterate through current users picks
              for (let i = 0; i < user.picks.length; i++) {
 
@@ -114,17 +128,7 @@ router.get('/connect/:id', async (req, res) => {
             take.push (item)
             i = user.picks.length
           }
-
-         
-
-              // if my pick matches the current user pick return the user name and the take we liked
-              // if (item === user.picks[i].take_id) {
-              //   matches.push (user.user_name, user.picks[i])
-              // }
           }
-
-        
-
         })
 
         }
@@ -132,7 +136,6 @@ router.get('/connect/:id', async (req, res) => {
         if (test >= 3) {
           matches.push (user.user_name, take)
         }
-
       });
   // send the matches
     res.send (matches);
@@ -144,32 +147,33 @@ router.get('/connect/:id', async (req, res) => {
 
 
 
-
-
-
-
-
-router.get('/:id', async (req, res) => {
-  // find one category by its `id` value
-  // be sure to include its associated Products
-
+router.get('/takecomments', async (req, res) => {
   try {
-    const categoriesData = await User.findByPk(req.params.id, {
-      
-      include: [{ model: Pick}],
-    });
-    if (!categoriesData) {
-      res.status(404).json({ message: 'id not found' });
-      return;
-    
-    }
+    // Get all projects and JOIN with user data
+    const projectData = await Take.findAll({
 
-    res.status(200).json(categoriesData);
+      attributes: ["name", "description"],
+      include: [
+      
+        {
+          model: Comment,
+          attributes: ["user_name", "text"],
+        },
+      ],
+     
+    });
+
+    // Serialize data so the template can read it
+    const projects = projectData.map((project) => project.get({ plain: true }));
+
+    res.send (projects);
+    
   } catch (err) {
     res.status(500).json(err);
   }
-
 });
+
+
 
 module.exports = router;
 
