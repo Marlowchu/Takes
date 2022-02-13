@@ -1,0 +1,41 @@
+[
+  {
+    "user_id": "1",
+    "catergory": "food",
+    "title": "Music Near Me",
+    "description": "A mobile app that will send you notifications whenever a concert is playing in your area."
+  
+  },
+  {
+    "user_id": "2",
+    "catergory": "vehicles",
+    "title": "Chicken nuggets",
+    "description": "A web app that will give users 10 new technical questions each day and track their progress in things like programming, cybersecurity, database architecture, and more!"
+  },
+  {
+    "user_id": "3",
+    "catergory": "random",
+    "title": "F150 lightning",
+    "description": "A game for Windows and macOS where players move a ball through a series of increasingly challenging mazes." 
+  },
+  {
+    "user_id": "4",
+    "catergory": "entertainment",
+    "title": "hip hop",
+    "description": "A mobile app that will send you notifications whenever a concert is playing in your area."
+  
+  },
+  {
+    "user_id": "5",
+    "catergory": "sports",
+    "title": "taco",
+    "description": "A web app that will give users 10 new technical questions each day and track their progress in things like programming, cybersecurity, database architecture, and more!"
+  },
+  {
+    "user_id": "6",
+    "catergory": "music",
+    "title": "fishing",
+    "description": "A game for Windows and macOS where players move a ball through a series of increasingly challenging mazes."
+    
+  }
+]

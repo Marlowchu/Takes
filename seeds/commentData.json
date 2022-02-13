@@ -1,0 +1,35 @@
+[
+  {
+    "user_name": "Sally",
+    "text": "Music Near Me",
+    "take_id": 1
+  
+  },
+  {
+    "user_name": "Sally",
+    "text": "Chicken nuggets",
+    "take_id": 1
+  },
+  {
+    "user_name": "Chuck",
+    "text": "F150 lightning",
+    "take_id": 3
+  },
+  {
+    "user_name": "Bobby",
+    "text": "hip hop",
+    "take_id": 3
+  
+  },
+  {
+    "user_name": "Chuck",
+    "text": "taco",
+    "take_id": 2
+  },
+  {
+    "user_name": "Bobby",
+    "text": "taco",
+    "take_id": 2
+    
+  }
+]
