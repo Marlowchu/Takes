@@ -1,0 +1,36 @@
+<section>
+    <h2>
+        {{#each takes as |take|}}
+        {{take.title}}
+        <hr>
+        {{take.description}}
+        <textarea></textarea>
+        {{/each}}
+    </h2>
+    <main class="mainDisplay">
+       <div class="postBox">
+           <span class="postDetails">
+               <div class="userIcon">User Pic</div>
+               <textarea name="newPostTitle" class="titleBox" cols="30" rows="10" placeholder="Title" ></textarea>
+               <textarea name="newPost" class="textBox" cols="30" rows="10" placeholder="add your 2&#162..." ></textarea>
+               <button class="addPostBtn" >+Add</button>
+           </span>
+
+       </div>
+
+       <div>
+           <span class="dashboard">
+               Here is a recent post
+           </span>
+       </div>
+       
+       <div>
+           <span class="dashboard">
+               Here is another recent post
+           </span>
+       </div>
+
+   </main>
+   <script src="/js/newPost.js"></script>
+
+</section>
