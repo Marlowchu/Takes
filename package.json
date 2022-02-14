@@ -1,25 +1,31 @@
 {
-  "name": "restful_api",
+  "name": "takes",
   "version": "1.0.0",
-  "description": "Project2",
+  "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "none",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "watch": "nodemon server.js",
-    "seed": "node seeds/index.js"
+    "seed": "node seeds/seed.js"
   },
-  "author": "Terrell Hudson",
-  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Marlowchu/Takes.git"
+  },
+  "author": "chuck marlow",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Marlowchu/Takes/issues"
+  },
+  "homepage": "https://github.com/Marlowchu/Takes#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "connect-session-sequelize": "^7.1.2",
     "dotenv": "^16.0.0",
     "express": "^4.17.2",
     "express-handlebars": "^6.0.2",
-    "express-sessions": "^1.0.6",
-    "handlebars": "^4.7.7",
+    "express-session": "^1.17.2",
     "mysql2": "^2.3.3",
-    "nodemon": "^2.0.15",
-    "sequelize": "^6.15.1"
+    "sequelize": "^6.15.0"
   }
 }

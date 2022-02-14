@@ -1,6 +1,6 @@
 const User = require('./User');
 const Comment = require('./Comment');
-const Takes = require('./Takes');
+const Take = require('./Take');
 const Pick = require('./Pick');
 const { pick } = require('lodash');
 
@@ -13,22 +13,22 @@ Pick.belongsTo(User, {
   // foreignKey: 'user_id'
 });
 
-Takes.hasMany(Pick, {
+Take.hasMany(Pick, {
   // foreignKey: 'user_id',
   onDelete: 'CASCADE'
 });
 
-Pick.belongsTo(Takes, {
+Pick.belongsTo(Take, {
   // foreignKey: 'user_id'
 });
 
 
-Takes.hasMany(Comment, {
+Take.hasMany(Comment, {
   // foreignKey: 'take_id',
   onDelete: 'CASCADE'
 });
 
-Comment.belongsTo(Takes, {
+Comment.belongsTo(Take, {
   // foreignKey: 'take_id'
 });
 // Take.hasMany(Pick, {
@@ -74,4 +74,4 @@ Comment.belongsTo(Takes, {
 
 
 
-module.exports = { User, Takes, Comment, Pick };
+module.exports = { User, Take, Comment, Pick };

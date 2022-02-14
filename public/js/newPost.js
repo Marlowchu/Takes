@@ -34,4 +34,66 @@ postBtn.addEventListener('click', async () => {
     }
 })
 
+
+
+
+
+const commentButtonHandler = async (event) => {
+    
+    const text = document.querySelector('.textBox').value.trim();
+
+    if (event.target.hasAttribute('data-id')) {
+        const take_id = event.target.getAttribute('data-id');
+    
+        
+    
+        const response = await fetch(`/api/users/comment`, {
+          method: 'POST',
+          body: JSON.stringify({ text, take_id }),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+    
+        if (response.ok) {
+            alert('success')
+        } else {
+          alert('Failed to add comment');
+        }
+      }
+    };
+    
+
+    const likeButtonHandler = async (event) => {
+    
+        if (event.target.hasAttribute('data-id')) {
+            const take_id = event.target.getAttribute('data-id');
+        
+            
+        
+            const response = await fetch("/api/users/pick", {
+              method: 'POST',
+              body: JSON.stringify({ take_id }),
+              headers: {
+                'Content-Type': 'application/json',
+              },
+            });
+        
+            if (response.ok) {
+                alert('success')
+            //   document.location.replace('/');
+            } else {
+              alert('Failed to add like');
+            }
+          }
+        };
+
+document
+.querySelector('#commentbtn')
+.addEventListener('click', commentButtonHandler);
+
+document
+.querySelector('#likebtn')
+.addEventListener('click', likeButtonHandler);
+
 // post.innerText = 
