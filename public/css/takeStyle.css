@@ -155,9 +155,6 @@ button {
     justify-content: center;
     border: 3px solid rgba(3, 4, 70, 0.089);
 }
-.left_Area_User .right_Area_Post {
-    display: inline-block !important;
-}
 
 .titleBox {
     position: absolute;
@@ -186,6 +183,16 @@ button {
 
 }
 
+.postDetails {
+    position: absolute;
+    top: 0;
+    border: 2px solid black;
+    height: 111px;
+    width: 63%;
+    padding: 8px;
+    border-radius: 8px;
+    transform: translate(-50%, 0);
+}
 
 .addPostBtn {
     position: absolute;
@@ -197,7 +204,7 @@ button {
 .userIcon {
     font-size: .5em;
     padding: 5px;
-    /* position: absolute; */
+    position: absolute;
     margin-top: 0;
     height: 63px;
     width: 63px;

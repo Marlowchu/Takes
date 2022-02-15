@@ -1,0 +1,61 @@
+.postBox {
+    position: relative;
+    height: 122px;
+    width: 100vw;
+    display: block;
+    margin-top: 36px;
+    padding: 15px;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    border: 3px solid rgba(3, 4, 70, 0.089);
+}
+
+
+.titleBox {
+    position: absolute;
+    width: 21vw;
+    height: 44px;
+    top: 8%;
+    left: 18%;
+    border-radius: 8px;
+    border: none;
+    padding: 5px;
+    font-size: .7em;
+
+
+}
+
+.textBox {
+    position: absolute;
+    width: 42vw;
+    height: 44px;
+    top: 50%;
+    left: 50%;
+    font-size: 1em;
+    padding: 5px;
+    border-radius: 8px;
+    transform: translate(-50%, -50%);
+
+}
+
+.userIcon {
+    width: 100px;
+    left: 10;
+    
+}
+
+.mainDisplay {
+    position: relative;
+}
+
+.postDetails {
+    position: absolute;
+    top: 0;
+    border: 2px solid black;
+    height: 111px;
+    width: 63%;
+    padding: 8px;
+    border-radius: 8px;
+    transform: translate(-50%, 0);
+}
