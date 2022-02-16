@@ -157,7 +157,7 @@ label #sidebar_btn:hover {
   background: #e0f2fa;
   background-position: center;
   background-size: cover;
-  height: 100vh;
+  height: 150vh;
   transition: 0.5s;
 }
 
@@ -257,7 +257,7 @@ label #sidebar_btn:hover {
 
 .Dashboard {
   position: relative;
-  border: 2px #EDFAFF; solid;
+  border: 2px #EDFAFF solid;
 }
 
 .MiniMenu {
@@ -282,7 +282,7 @@ label #sidebar_btn:hover {
 
 .popular-post {
   position: absolute;
-  height: 70%;
+  height: 100%;
   width: 40%;
   border: 2px red solid;
   right: 0;
@@ -292,7 +292,7 @@ label #sidebar_btn:hover {
 
 .Latest-post {
   position: absolute;
-  height: 70%;
+  height: 100%;
   left: 0;
   width: 40%;
   border: 2px blue solid;
