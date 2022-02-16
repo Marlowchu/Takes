@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/css/takeStyle.css">
     <title>Takes</title>
 </head>
+
 <body>
     
     <header class="header">
@@ -23,17 +24,21 @@
             <hr>
                 <input class="password" type="password" placeholder="Enter Password">
             <hr>
-                <button type="submit" >Create Account</button>
+                <button id="submit" type="submit" >Create Account</button>
             
 
             </form>
-            <button class="btn">Already a member? Click <b>here</b> to login</button>
-
+            {{#if isMember}}
+            <button class="toLogin">Already a member? Click <b>here</b> to login</button>
+            {{/if}}
         </div>
     </header>
+
+    
     
     
   
 </body>
-{{!-- <script src="/js/login.js"></script> --}}
+
+<script src="/js/register.js"></script>
 </html>

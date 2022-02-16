@@ -1,37 +1,49 @@
 const post = document.querySelector('.textBox');
-const postBtn = document.querySelector('.addPostBtn')
+const postBtn = document.querySelector('.addPostBtn');
+const onDashboard = document.querySelector('.postList');
 
 const postDetails = () => {
-    const post = document.querySelector('.textBox').value.trim();
+	const post = document.querySelector('.textBox').value.trim();
 
-    return post
+	return post;
 };
 
-post.addEventListener('keypress', postDetails)
+post.addEventListener('keypress', postDetails);
 
 postBtn.addEventListener('click', async () => {
-    const description = document.querySelector('.textBox').value.trim();
-    const title = document.querySelector('.titleBox').value.trim();
-    if (description && title) {
-        const response = await fetch('/api/users/post', {
-            method: 'POST',
-            body: JSON.stringify({ title, description }),
-            headers: {'Content-Type': 'application/json'}
-        })
-        .then(() => {
-            document.querySelector('.textBox').value = ""
-            document.querySelector('.titleBox').value = ""
-        })
-        
-        console.log(response)
-    }
-   
-    const clearIt = () => {
-        console.log('ran')
-        document.querySelector('.textBox').value = ""
-        document.querySelector('.titleBox').value = ""
+	const description = document.querySelector('.textBox').value.trim();
+	const title = document.querySelector('.titleBox').value.trim();
+	if (description && title) {
+		const response = await fetch('/api/users/post', {
+			method: 'POST',
+			body: JSON.stringify({ title, description }),
+			headers: { 'Content-Type': 'application/json' },
+		}).then(() => {
+			document.querySelector('.textBox').value = '';
+			document.querySelector('.titleBox').value = '';
+			window.location.reload();
+		});
 
-    }
-})
+		console.log(response);
+	}
 
-// post.innerText = 
+	const clearIt = () => {
+		console.log('ran');
+		document.querySelector('.textBox').value = '';
+		document.querySelector('.titleBox').value = '';
+	};
+});
+
+// Function to fetch all post and send them to the Dom.
+
+fetch(`api/users/post`)
+	.then((response) => response.json())
+	.then((data) => {
+		for (i = 0; i < data; i++) {}
+		const thePost = data.map(
+			(allPost) => `<li class="newPost">
+        ${allPost.title}\n <div class="theDescription">${allPost.description}</div> 
+        </li>`
+		);
+		return (onDashboard.innerHTML = thePost.reverse());
+	});

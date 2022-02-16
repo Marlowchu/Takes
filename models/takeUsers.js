@@ -30,6 +30,7 @@ Users.init(
                 len: [6, 222]
             }
 		},
+		
 	},
 	{
 		sequelize,

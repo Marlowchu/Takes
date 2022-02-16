@@ -1,6 +1,49 @@
 <section>
     <div>
         This is the profile page!
+        <aside>
+            <div class="profileCard">
+                <img class="profileAvatar" src="/uploads/Turtle.jpg">
+                <div class="statBox">
+                    Memeber Since: 1/1/22
+                    <hr>
+                    <b>User</b>: {{theUser.username}}  
+                    <hr>
+                    <b>Role</b>: All Access!
+                    <hr>
+                    <b>About</b>: I enjoy writing about the world I see daily.
+                    <hr>
+                    <b>Stats</b>: 10,000Pennies 10,000Likes
+                </div>
+            </div>
+        </aside>
     </div>
 
 </section>
+
+<section class="userInfo">
+    <div class="profilePostBox">
+        <form method="POST" action="/api/users/uploads" enctype="multipart/form-data">
+    <div>
+        <label>Upload profile picture</label>
+        <input type="file" class="profilePic" name="profile-file" required/>
+    </div>
+    <div>
+        <input type="submit" value="Upload" />
+    </div>
+</form>
+        To Cents:
+        post
+
+    <hr>
+    </div>
+    
+
+    <div class="interestBox">
+        Likes/interest/Comments:
+        <hr>
+
+    </div>
+</section>
+    <script src="/js/fileUpload.js"></script>
+    <script src="/js/s3.js"></script>

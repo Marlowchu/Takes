@@ -1,61 +1,35 @@
-let theButton = document.querySelector('.btn');
-
-const loginFormHandler = async (e) => {
+// const loginButton = document.getElementById('loginBtn');
+const loginHandler = async (e) => {
 	e.preventDefault();
 
-	console.log('ran');
-
-	const email = document.querySelector('.email-login').value.trim();
-	const password = document.querySelector('.password-login').value.trim();
+	let email = document.querySelector('.loginEmail').value.trim();
+	let password = document.querySelector('.loginPassword').value.trim();
 
 	if (email && password) {
-		const response = await fetch('/api/users/login', {
+		const response = await fetch('api/users/login', {
 			method: 'POST',
 			body: JSON.stringify({ email, password }),
-			header: { 'Content-Type': 'application/json' },
-		});
-
-		if (response.ok) {
-			document.location.replace('/');
-		} else {
-			alert('Failed to login');
-		}
-	}
-};
-
-const signupFormHandler = async (e) => {
-	e.preventDefault();
-
-	const username = document.querySelector('.username').value.trim();
-	const email = document.querySelector('.email').value.trim();
-	const password = document.querySelector('.password').value.trim();
-
-	if (username && email && password) {
-		const response = await fetch('/api/users/register', {
-			method: 'POST',
-			body: JSON.stringify({ username, email, password }),
 			headers: { 'Content-Type': 'application/json' },
 		});
 
 		if (response.ok) {
 			document.location.replace('/');
 		} else {
-			alert('Failed to sign up');
+			alert('Incorrect Email or Password');
 		}
 	}
 };
 
-function hideSignUp() {
-	const loginForm = document.querySelector('.signup-form');
-	loginForm.setAttribute('class', '.hidden');
-}
-
-// theButton.addEventListener('click', hideSignUp)
-
-document
-	.querySelector('.signup-form')
-	.addEventListener('submit', signupFormHandler);
+// function hideSignUp() {
+// 	console.log('click');
+// 	// const loginForm = document.querySelector('.signup-form');
+// 	// loginForm.setAttribute('class', '.hidden');
+// }
 
 document
-	.querySelector('.login-form')
-	.addEventListener('submit', loginFormHandler);
+.getElementById('login-form')
+.addEventListener('submit', loginHandler);
+
+// loginButton
+// .getElementById('loginForm')
+// .addEventListener('submit', loginFormHandler )

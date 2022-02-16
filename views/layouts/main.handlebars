@@ -16,6 +16,9 @@
            <img class="logo" src="/img/twoCentsLogo.jpg">
            <h1 class="toName"><h1><span class="logoTitle">To: Cents</span></h1>
            <img class="profileArea" src="/img/blankProfile.png">
+           {{#if isMember}}<h2 class="logout">LOGOUT</h2>
+            {{else}} <h2 class="login"> LOGIN</h2>
+             {{/if}}
 
        </div>
 
@@ -28,6 +31,6 @@
 
    </div>
 </body>
-    <script src="/js/login.js"></script>
+    {{!-- <script src="/js/login.js"></script> --}}
 
 </html>
