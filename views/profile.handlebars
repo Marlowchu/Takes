@@ -3,11 +3,11 @@
         This is the profile page!
         <aside>
             <div class="profileCard">
-                <img class="profileAvatar" src="/uploads/Turtle.jpg">
+                <img class="profileAvatar" src="{{userPic}}">
                 <div class="statBox">
-                    Memeber Since: 1/1/22
+                    Memeber Visits: {{countVisit}}
                     <hr>
-                    <b>User</b>: {{theUser.username}}  
+                    <b>User</b>: {{username}}  
                     <hr>
                     <b>Role</b>: All Access!
                     <hr>
@@ -47,3 +47,6 @@
 </section>
     <script src="/js/fileUpload.js"></script>
     <script src="/js/s3.js"></script>
+    {{#if isMember}}
+    <script src="/js/logout.js"></script>
+    {{/if}}

@@ -1,6 +1,8 @@
 const router = require('express').Router();
-const takeUsers = require('../../models/takeUsers.js');
-const Takes = require('../../models/Takes.js');
+const { Takes, Users, Comment, Pick } = require('../../models');
+// deprecated code v
+// const takeUsers = require('../../models/takeUsers.js');
+// const Takes = require('../../models/Takes.js');
 const picUsers = require('../../models/picUsers.js')
 const bcrypt = require('bcrypt');
 const fs = require('fs');
@@ -42,6 +44,8 @@ router.get('/uploads/:key', async (req, res) => {
 	// const theUsersPic = await picUsers.findAll({
 		
 	// }); 
+	// req.session.member ? res.redirect('/profile') :
+	// res.render('profile')
 
 	res.status(200).json(key);
 });
@@ -71,7 +75,8 @@ router.get('/post', async (req, res) => {
 // Get all Users from the database.
 
 router.get('/', async (req, res) => {
-	const allUsers = await takeUsers.findAll({
+	const allUsers = await Users.findAll({
+		
 		
 	});
 
@@ -80,7 +85,7 @@ router.get('/', async (req, res) => {
 
 // Get User by Id
 router.get('/:id', async (req, res) => {
-	const idUser = await takeUsers.findOne({
+	const idUser = await Users.findOne({
 		where: {
 			id: req.params.id,
 		},
@@ -93,7 +98,7 @@ router.get('/:id', async (req, res) => {
 
 // Delete User by Id
 router.delete('/:id', async (req, res) => {
-	const delUser = await takeUsers.destroy({
+	const delUser = await Users.destroy({
 		where: {
 			id: req.params.id,
 		},
@@ -109,29 +114,25 @@ router.delete('/:id', async (req, res) => {
 router.post('/register', async (req, res) => {
 	
 	// const { username, email, password} = req.body
-	const hashedPassword = await bcrypt.hash(req.body.password, 10);
+	// const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
 	try {
-		const dbUserData = await takeUsers.create({
-			username: req.body.username,
-			email: req.body.email,
-			password: hashedPassword,
-		});
+		const dbUserData = await Users.create(req.body);
 		const cleanUser = dbUserData.get({ plain: true });
+		req.session.save(() => {
+			req.session.member = true
+			req.session.user_id = cleanUser.id;
+      		req.session.username = cleanUser.username;
+			 	
+		});
+		
 
 		if (!cleanUser) {
 			return res.status(404).json({ message: 'Email or password taken' });
 		}
-		req.session.save(() => {
-			// req.session.member = true,
-			req.session.userInfo = cleanUser.username
-			
-				 	
-		});
 		 
 		res.status(200).json(cleanUser);
 		
-		console.log(req.session.member)
 	} catch (err) {
 		res.status(500).json(err);
 	}
@@ -142,7 +143,8 @@ router.post('/register', async (req, res) => {
 router.post('/login', async (req, res) => {
 	
 	try {
-		const userExist = await takeUsers.findOne({		
+		const userExist = await Users.findOne({	
+				
 			where: {
 				email: req.body.email,
 			},
@@ -154,6 +156,11 @@ router.post('/login', async (req, res) => {
 		}
 		req.session.save(() => {
 			req.session.member = true
+			req.session.theName = cleanUserLogin.username
+			req.session.theEmail = cleanUserLogin.email
+			req.session.profilePic = cleanUserLogin.profile_pic
+			
+			
 			
 		});
 		
@@ -188,20 +195,38 @@ router.post('/post', async (req, res) => {
 router.post('/uploads', upload.single('profile-file'),  async(req, res, next) => {
 	// req.file is the `profile-file` file
 	// req.body will hold the text fields, if there were any
-	dbProfilePic = await picUsers.create({
-		profile_pic: req.file.path
-	});
 	const file = req.file
 	console.log("Path:",req.file.path)
 	const result = await uploadFile(file)
+	const thePicture = await result.Location
+	req.session.save(() => {
+		req.session.profilePic = thePicture
+	});
 	await unlinkFile(file.path)
-	console.log(result)
-	let response = '<a href="/">Home</a><br>'
+	dbProfilePic = await Users.update({
+		profile_pic: thePicture},
+		{
+			where: {
+			email: req.session.theEmail,
+		},
+		
+		});
+	let response = '<a href="/profile">Profile</a><br>'
 	response += "Files uploaded successfully.<br>"
-	response += `<img class=""src="${req.file.path}" /><br>`
-	return res.send({imagePath: `/uploads/${result.Key}`})
+	response += `<img class=""src="${result.Location}" /><br>`
+	return res.send(response)
   });
 
+// Function to logout the User and destroy session.
+router.post('/logout', (req, res) => {
+	if (req.session.member) {
+	  req.session.destroy(() => {
+		res.status(204).end();
+	  });
+	} else {
+	  res.status(404).end();
+	}
+  });
   
 
 module.exports = router;

@@ -1,5 +1,7 @@
 const router = require('express').Router();
-const Takes = require('../models/Takes.js');
+const { Takes, Users, Comment, Pick } = require('../models');
+// deprecated code v
+// const Takes = require('../models/Takes.js');
 
 // Render the Main page of Takes.
 router.get('/', async (req, res) => {
@@ -16,7 +18,9 @@ router.get('/', async (req, res) => {
 		res.render('homepage', {
 			theTakes,
 			countVisit: req.session.countVisit,
-			isMember: req.session.member
+			isMember: req.session.member,
+			userPic: req.session.profilePic,
+			username: req.session.theName  
 		});
 	} catch (err) {
 		console.log(err);
@@ -56,7 +60,10 @@ router.get('/profile', async (req, res) => {
 	try {
 		res.render('profile', {
 			isMember: req.session.member,
-			theUser: req.session.userInfo 
+			userPic: req.session.profilePic,
+			username: req.session.theName,
+			countVisit: req.session.countVisit
+			
 		}
 		);
 	} catch (err) {

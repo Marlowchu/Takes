@@ -11,6 +11,17 @@ Takes.init(
 			primaryKey: true,
 			autoIncrement: true,
 		},
+		user_id: {
+			type: DataTypes.INTEGER,
+			references: {
+			  model: 'users',
+			  key: 'id',
+			},
+		},
+		category: {
+			type: DataTypes.STRING,
+			allowNull: false,
+		  },
 		title: {
 			type: DataTypes.STRING,
 			allowNull: false,

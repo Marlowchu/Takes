@@ -11,6 +11,7 @@ body {
 
 a {
 	text-decoration: none;
+	color: yellow;
 }
 
 .header {
@@ -60,6 +61,12 @@ button {
 	color: rgb(123, 207, 235);
 	border-radius: 8px;
 	background-color: rgba(255, 68, 0, 0.705);
+}
+
+.logoutBtn {
+	margin-top: -11%;
+	border: none;
+	
 }
 
 .btn {

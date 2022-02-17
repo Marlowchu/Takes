@@ -1,4 +1,3 @@
-// const loginButton = document.getElementById('loginBtn');
 const loginHandler = async (e) => {
 	e.preventDefault();
 
@@ -20,16 +19,9 @@ const loginHandler = async (e) => {
 	}
 };
 
-// function hideSignUp() {
-// 	console.log('click');
-// 	// const loginForm = document.querySelector('.signup-form');
-// 	// loginForm.setAttribute('class', '.hidden');
-// }
 
 document
 .getElementById('login-form')
 .addEventListener('submit', loginHandler);
 
-// loginButton
-// .getElementById('loginForm')
-// .addEventListener('submit', loginFormHandler )
+

@@ -41,7 +41,7 @@ let selection = 19;
 // 	res.status(200).json(theUsersPic);
 // });
 
-fetch(`'https://to-cents.s3.amazonaws.com/ASU.jpg`)
+fetch(`https://the-cents.s3.amazonaws.com/Turtle.jpg`)
 	.then((response) => response.json())
 	.then((data) => {
 		console.log(data);
