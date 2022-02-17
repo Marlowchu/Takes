@@ -231,7 +231,8 @@ label #sidebar_btn:hover {
 .form-group {
   right: 5;
   position: flex;
-  width: 30vw;
+  width: 300%;
+  height: 100%;
   margin-right: -70%;
   transform: translate(35%, 0%);
 }
@@ -247,7 +248,8 @@ label #sidebar_btn:hover {
 #postDescription {
   font-size: 1em;
   border-radius: 8px;
-  height: 7vw;
+  width: 100%;
+  height: 5vw;
   font-size: 1em;
   color: #0085FF 30%;
   border-radius: 8px;
@@ -352,18 +354,37 @@ label #sidebar_btn:hover {
 }
 
 .userPost_Title {
- 
+ position: absolute;
   border: 2px red solid;
-  right: 10px;
-  transform: translate(75%, 40%)
+  left: 10px;
+  box-sizing: border-box;
+  transform: translate(75%, 40%);
+  display: block;
 
 }
 
 .userPost_Description {
- position: absolute;
-  right: 10px;
-  transform: translate(75%, 40%)
+ position: flex;
+  left: 10px;
+  transform: translate(-20%, 200%);
+  bottom: 10;
   
+
+  
+}
+
+.postIcons {
+position: relative;
+
+}
+
+.Post-Icon-Sizing {
+  position: flex;
+  transform: translate(1100%, -60%);
+  width: 8%;
+  height: 5%;
+  display: block;
+  margin: 10px;
 }
 
 /* Responsive CSS */
