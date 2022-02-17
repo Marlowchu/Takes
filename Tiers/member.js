@@ -13,6 +13,10 @@ class Member  {
     getRole(){
         return 'Member'
     }
+
+    getImage(){
+        return 
+    }
 }
 
 

@@ -1,3 +1,4 @@
+
 const post = document.querySelector('.textBox');
 const postBtn = document.querySelector('.addPostBtn')
 
@@ -33,5 +34,7 @@ postBtn.addEventListener('click', async () => {
 
     }
 })
+
+
 
 // post.innerText = 

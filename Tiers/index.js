@@ -11,8 +11,11 @@ const AllAccess = require ('./allAccess');
 
 console.log('Program Starting');
 
+let totalPoints = 0;
+// totalPoints = countVisit + comment + pick + take
+// // countVisit=  ('#text');
 
-let totalPoints = 10;
+// console.log(countVisit)
 
 const ranking = new Fan 
 const ranking2 = new Member
@@ -25,6 +28,7 @@ const hierachy = () => {
         
        
     console.log(`You are a ${ranking2.getRole()}`)
+    
     
     }else if
         (totalPoints  >=5 && totalPoints < 8){
@@ -53,6 +57,7 @@ hierachy();
     
 console.log('Program ending');
     
+
     
     // () =>
     

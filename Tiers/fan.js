@@ -1,7 +1,10 @@
 
 class Fan  {
     getRole(){
-        return 'fan'
+        return 'Fan'
+    }
+    getImage(){
+        return 
     }
 }
 

@@ -12,7 +12,7 @@ const loginFormHandler = async (e) => {
 		const response = await fetch('/api/users/login', {
 			method: 'POST',
 			body: JSON.stringify({ email, password }),
-			header: { 'Content-Type': 'application/json' },
+			headers: { 'Content-Type': 'application/json' },
 		});
 
 		if (response.ok) {
@@ -22,6 +22,9 @@ const loginFormHandler = async (e) => {
 		}
 	}
 };
+
+
+
 
 const signupFormHandler = async (e) => {
 	e.preventDefault();
@@ -52,9 +55,9 @@ function hideSignUp() {
 
 // theButton.addEventListener('click', hideSignUp)
 
-document
-	.querySelector('.signup-form')
-	.addEventListener('submit', signupFormHandler);
+// document
+// 	.querySelector('.signup-form')
+// 	.addEventListener('submit', signupFormHandler);
 
 document
 	.querySelector('.login-form')
