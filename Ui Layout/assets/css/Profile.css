@@ -3,39 +3,52 @@
 	position: relative;
 	left: 60;
 	margin: 33px;
-	height: 77vh;
+	height: 66vh;
+	width: 40vw;
 	padding: 8px;
-	width: 41.3vw;
-	box-shadow: 8px 8px 22px 8px rgba(0, 0, 139, 0.561);
-	border-radius: 8px;
-    background-image: url('/img/brainConnectBG.jpg');
-	background-color: rgba(0, 4, 236, 0.089);
-	border: 2px solid orange;
+
+	/* max-width: 1100px; */
+
+  
+	background: #e0f2fa;
+	border: 2.5px solid #4fdbfa;
+	box-sizing: border-box;
+	box-shadow: 4px 4px 5px 4px rgba(255, 153, 0, 0.123);
+	border-radius: 16px;
+	font-size: 14px;
+	opacity: 0.8;
+	background: #EDFAFF;
 }
 
 .profileAvatar {
-	margin: 6px;
-	border: 3px solid rgba(0, 0, 255, 0.63);
+	position: relative;
+	margin: 0 auto;
+	border: 3px solid #ffae00f3;
 	position: absolute;
-	top: 0;
 	left: 21%;
 	height: 133px;
 	width: 133px;
-	transform: translate(-50%, 0);
+	transform: translate(20%, 20%);
 	border-radius: 50%;
+
 }
 
 .statBox {
-	position: absolute;
+	position: relative;
 	background-color: rgba(245, 235, 235, 0.931);
-	color: rgb(153, 18, 0);
+	color: rgb(255, 166, 0);
 	padding: 5px;
-	height: 60%;
-	width: 39vw;
+	height: 65%;
+	width: 90%;
 	font-size: 0.7em;
 	font-weight: 200;
-	bottom: 8;
-	border: 2px solid orange;
+	border: 2px solid #ffae00f3;
+	margin: 0 auto;
+	border-radius: 16px;
+	transform: translate(0%, 50%);
+
+
+
 }
 
 .userInfo {
@@ -43,16 +56,27 @@
 	float: left;
 	top: -650;
 	right: -810;
-	margin: 12px;
-	height: 77vh;
+	margin: 33px;
+	height: 66vh;
 	width: 40vw;
-    border-radius: 8px;
-	background-color: rgba(0, 0, 255, 0.164);
+
+	/* max-width: 1100px; */
+
+  
+	background: #e0f2fa;
+	border: 2.5px solid #4fdbfa;
+	box-sizing: border-box;
+	box-shadow: 4px 4px 5px 4px rgba(255, 153, 0, 0.123);
+	border-radius: 16px;
+	font-size: 14px;
+	opacity: 0.8;
+	background: #EDFAFF;
 }
 
 .profilePostBox {
-	position: absolute;
-	margin: 22px;
+	position: relative;
+	margin: 0 auto;
+	margin-top: 20px;
 	top: 0;
 	left: 0;
 	height: 46%;
@@ -60,11 +84,13 @@
 	padding: 8px;
 	border-radius: 8px;
 	border: 2px solid blue;
+	background: #EDFAFF;
 }
 
 .interestBox {
-	position: absolute;
-	margin: 22px;
+	position: relative;
+	margin: 0 auto;
+	margin-top: 30px;
 	bottom: 0;
 	left: 0;
 	height: 40%;
@@ -72,4 +98,26 @@
 	padding: 8px;
 	border-radius: 8px;
 	border: 2px solid blue;
+}
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+input[type="submit"] {
+    display: none;
+}
+
+.uploadButton {
+	border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+
 }
