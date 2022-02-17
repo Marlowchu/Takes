@@ -1,4 +1,7 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Saira:wght@100;200;300;400;600;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
+
 
 .signUp-background { 
     width: (100% - 300px);
@@ -13,19 +16,21 @@
     }
     
     .signUp-title {
+        font-family: 'Oswald', sans-serif;
+        font-weight: 900;
         text-align: center;
         align-items: center;
         top: 8%;
         left:50%;
         position: absolute;
         color: rgb(255, 174, 0);
-        font-size: 2em;
+        font-size: 4em;
         transform: translate(-50%, 0);
     }
     
     .signUp {
     
-        height: 650px;
+        height: 730px;
         width: 444px;
         padding: 11px;
         text-align: center;
@@ -53,9 +58,35 @@
       }
     
     input[type="password"] {
-        width: 60%;
-        font-size: 20px;
-      }
+    width: 60%;
+    font-size: 20px;
+    }
+
+
+    .emailText {
+    font-family: 'Oswald', sans-serif;
+    color: rgb(0, 174, 255);
+    font-size: 30px;
+
+    }
+
+    .passwordText {
+        font-family: 'Oswald', sans-serif;
+        color: rgb(0, 174, 255);
+        font-size: 30px;
+    }   
+    
+    .usernameText {
+        font-family: 'Oswald', sans-serif;
+        color: rgb(0, 174, 255);
+        font-size: 30px;
+    }   
+
+    ::placeholder {
+        color: rgba(255, 153, 0, 0.623);
+    }
+    
+    
     
     button {
         margin: 18px;

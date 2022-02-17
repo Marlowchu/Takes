@@ -13,13 +13,15 @@ position: relative;
 }
 
 .login-title {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 900;
     text-align: center;
     align-items: center;
     top: 8%;
     left:50%;
     position: absolute;
     color: rgb(255, 174, 0);
-    font-size: 2em;
+    font-size: 4em;
     transform: translate(-50%, 0);
 }
 
@@ -32,7 +34,7 @@ position: relative;
     align-items: center;
     border-radius: 8px;
     position: absolute;
-    top: 22%;
+    top: 25%;
     left:50%;
     transform: translate(-50%, -30%);
     justify-content: center;
@@ -51,12 +53,32 @@ input[type="password"] {
     font-size: 20px;
   }
 
+
+
+.emailText {
+font-family: 'Oswald', sans-serif;
+color: rgb(0, 174, 255);
+font-size: 30px;
+
+}
+
+.passwordText {
+    font-family: 'Oswald', sans-serif;
+    color: rgb(0, 174, 255);
+    font-size: 30px;
+}   
+
 button {
     margin: 18px;
     padding: 5px;
     color: rgb(255, 196, 0);
     border-radius: 8px;
     background-color: rgb(255, 255, 255);
+}
+
+
+::placeholder {
+    color: rgba(255, 153, 0, 0.623);
 }
 
 .btn {
