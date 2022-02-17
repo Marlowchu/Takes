@@ -1,0 +1,75 @@
+
+.profileCard {
+	position: relative;
+	left: 60;
+	margin: 33px;
+	height: 77vh;
+	padding: 8px;
+	width: 41.3vw;
+	box-shadow: 8px 8px 22px 8px rgba(0, 0, 139, 0.561);
+	border-radius: 8px;
+    background-image: url('/img/brainConnectBG.jpg');
+	background-color: rgba(0, 4, 236, 0.089);
+	border: 2px solid orange;
+}
+
+.profileAvatar {
+	margin: 6px;
+	border: 3px solid rgba(0, 0, 255, 0.63);
+	position: absolute;
+	top: 0;
+	left: 21%;
+	height: 133px;
+	width: 133px;
+	transform: translate(-50%, 0);
+	border-radius: 50%;
+}
+
+.statBox {
+	position: absolute;
+	background-color: rgba(245, 235, 235, 0.931);
+	color: rgb(153, 18, 0);
+	padding: 5px;
+	height: 60%;
+	width: 39vw;
+	font-size: 0.7em;
+	font-weight: 200;
+	bottom: 8;
+	border: 2px solid orange;
+}
+
+.userInfo {
+	position: relative;
+	float: left;
+	top: -650;
+	right: -810;
+	margin: 12px;
+	height: 77vh;
+	width: 40vw;
+    border-radius: 8px;
+	background-color: rgba(0, 0, 255, 0.164);
+}
+
+.profilePostBox {
+	position: absolute;
+	margin: 22px;
+	top: 0;
+	left: 0;
+	height: 46%;
+	width: 36vw;
+	padding: 8px;
+	border-radius: 8px;
+	border: 2px solid blue;
+}
+
+.interestBox {
+	position: absolute;
+	margin: 22px;
+	bottom: 0;
+	left: 0;
+	height: 40%;
+	width: 36vw;
+	padding: 8px;
+	border-radius: 8px;
+	border: 2px solid blue;
+}
