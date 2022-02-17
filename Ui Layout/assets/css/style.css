@@ -27,7 +27,7 @@ header {
 }
 
 .Logo-header {
-  width: 200px;
+  width: 250px;
   height: auto;
 }
 
@@ -318,12 +318,52 @@ label #sidebar_btn:hover {
   transform: translate(10%, -45%);
   margin-top: 20%;
   right: 50;
+
 }
 
 .site-Icons {
   position: relative;
   width: 5%;
   height: 5%;
+}
+
+.sitePosts {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+
+  background: #e0f2fa;
+  border: 2.5px solid #4fdbfa;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 5px 1px rgba(0, 0, 0, 0.15);
+  border-radius: 16px;
+  height: 250px;
+  padding: 15px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  opacity: 0.8;
+  background: #EDFAFF;
+  text-align: center;
+}
+.userPost {
+  position: absolute;
+
+}
+
+.userPost_Title {
+ 
+  border: 2px red solid;
+  right: 10px;
+  transform: translate(75%, 40%)
+
+}
+
+.userPost_Description {
+ position: absolute;
+  right: 10px;
+  transform: translate(75%, 40%)
+  
 }
 
 /* Responsive CSS */
