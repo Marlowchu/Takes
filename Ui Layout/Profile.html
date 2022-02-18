@@ -48,17 +48,17 @@
   </div>
 
   
-    <section class="content">  
+    <section class="profile-content">  
     
         <div class="profileCard">
             <div >
                 <img class="profileAvatar" src="./assets/images/Profile-Icon_YellowMan.png">
-                    <h1>Welcome {User}</h1>
+    
             </div>
 
             <div class="statBox">
-                <h1>Hello</h1>
-                Memeber Since: 1/1/22
+                <h1>Welcome</h1>
+                Memeber Visits: 1/1/22
                 <hr>
                 <b>User</b>: {{theUser.username}}  
                 <hr>
@@ -73,13 +73,13 @@
         </div>
 
         
-        <div class="userInfo">
+        <div class="userInfo1">
           
             <div class="profilePostBox">
                 <form method="POST" action="/api/users/uploads" enctype="multipart/form-data">
                     <div>
-                        <span>Upload profile picture</span>
-                        <label  for="file" class="custom-file-upload">Choose File</label>
+                        <span class="uploadText">Upload profile picture</span>
+                        <label  for="file" class="custom-file-choose">Choose File</label>
                         <input type="file" class="profilePicButton" name="profile-file" required/>
                     </div>
 
@@ -93,21 +93,20 @@
 
         </div>
             
-            <div class="userInfo"> 
+            <div class="userInfo2"> 
                 <div class="interestBox">
-                    To Cents:
-                    post:
+                    My "To:Cents" Posts:
                     <hr>
             
                 </div>
 
             </div>
 
-            <div class="userInfo">
+            <div class="userInfo3">
 
             
                 <div class="interestBox">
-                    Likes/interest/Comments:
+                    Likes/Interest/Comments:
                     <hr>
 
                 </div>

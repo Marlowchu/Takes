@@ -1,6 +1,23 @@
 
+
+.profile-content {
+	position: flex;
+	width: (100% - 300px);
+	float: left;
+	margin-top: 60px;
+
+	margin-right: 250px;
+	background: #e0f2fa;
+	background-position: center;
+	background-size: cover;
+	height: 150vh;
+	transition: 0.5s;
+}
+
+
 .profileCard {
-	position: relative;
+	position: flex;
+	float: left;
 	left: 60;
 	margin: 33px;
 	height: 66vh;
@@ -20,44 +37,50 @@
 	background: #EDFAFF;
 }
 
+
 .profileAvatar {
-	position: relative;
+	position: flex;
 	margin: 0 auto;
 	border: 3px solid #ffae00f3;
-	position: absolute;
 	left: 21%;
 	height: 133px;
 	width: 133px;
-	transform: translate(20%, 20%);
+    transform: translate(47%, 55%);
 	border-radius: 50%;
 
 }
 
+
 .statBox {
-	position: absolute;
+	position: flex;
 	background-color: rgba(245, 235, 235, 0.931);
 	color: rgb(255, 166, 0);
-	padding: 5px;
-	height: 45%;
+	padding: 15px;
+	height: 52%;
 	width: 90%;
-	font-size: 0.7em;
 	font-weight: 200;
 	border: 2px solid #ffae00f3;
 	margin: 0 auto;
 	border-radius: 16px;
-	transform: translate(3%, 90%);
+	transform: translate(0%, 50%);
+
+	font-family: 'Oswald', sans-serif;
+    color: rgb(255, 145, 0);
+    font-size: 20px;
+	margin: 10px;;
+
 
 
 
 }
 
-.userInfo {
-	position: relative;
+.userInfo1 {
+	position: flex;
 	float: left;
 	top: -650;
 	right: -810;
 	margin: 33px;
-	height: 66vh;
+	height: 20vh;
 	width: 40vw;
 
 	/* max-width: 1100px; */
@@ -73,47 +96,72 @@
 	background: #EDFAFF;
 }
 
+
+.userInfo2 {
+	position: flex;
+	float: left;
+	top: -650;
+	right: -810;
+	margin: 33px;
+	height: 20vh;
+	width: 40vw;
+
+	/* max-width: 1100px; */
+
+  
+	background: #e0f2fa;
+	border: 2.5px solid #4fdbfa;
+	box-sizing: border-box;
+	box-shadow: 4px 4px 5px 4px rgba(255, 153, 0, 0.123);
+	border-radius: 16px;
+	font-size: 14px;
+	opacity: 0.8;
+	background: #EDFAFF;
+}
+
+.userInfo3 {
+	position: flex;
+	float: left;
+	top: -650;
+	right: -810;
+	margin: 33px;
+	height: 20vh;
+	width: 40vw;
+
+	/* max-width: 1100px; */
+
+  
+	background: #e0f2fa;
+	border: 2.5px solid #4fdbfa;
+	box-sizing: border-box;
+	box-shadow: 4px 4px 5px 4px rgba(255, 153, 0, 0.123);
+	border-radius: 16px;
+	font-size: 14px;
+	opacity: 0.8;
+	background: #EDFAFF;
+}
 .profilePostBox {
-	position: relative;
+	position: flex;
 	margin: 0 auto;
+	float: left;
 	margin-top: 20px;
 	top: 0;
 	left: 0;
 	height: 20%;
-	width: 36vw;
+	width: 15vw;
 	padding: 8px;
 	border-radius: 8px;
-	border: 2px solid blue;
+
 	background: #EDFAFF;
 }
 
-.interestBox {
-	position: relative;
-	margin: 0 auto;
-	margin-top: 30px;
-	bottom: 0;
-	left: 0;
-	height: 20%;
-	width: 36vw;
-	padding: 8px;
-	border-radius: 8px;
-	border: 2px solid blue;
-}
-input[type="file"] {
-    display: none;
-}
+.uploadText {
+	font-family: 'Oswald', sans-serif;
+    color: rgb(0, 174, 255);
+    font-size: 30px;
+	margin: 10px;
 
-.custom-file-upload {
-    border: 1px solid #ccc;
-    display: inline-block;
-    padding: 6px 12px;
-    cursor: pointer;
 }
-
-input[type="submit"] {
-    display: none;
-}
-
 .uploadButton {
 	border: 1px solid #ccc;
     display: inline-block;
@@ -121,3 +169,52 @@ input[type="submit"] {
     cursor: pointer;
 
 }
+
+form {
+	margin-left: 51px;
+}
+
+.interestBox {
+	position: flex;
+	margin: 0 auto;
+	margin-top: 8px;
+	bottom: 0;
+	left: 0;
+	height: 20%;
+	width: 36vw;
+	padding: 8px;
+	border-radius: 8px;
+	
+	font-family: 'Oswald', sans-serif;
+    color: rgb(0, 174, 255);
+    font-size: 30px;
+	margin: 10px;;
+
+}
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-choose {
+    border: 1px solid rgb(255, 196, 0);
+    display: inline-block;
+    padding: 6px 12px;
+	background-color: rgb(255, 242, 215);
+    cursor: pointer;
+	color: rgb(0, 174, 255);
+}
+
+.custom-file-upload {
+    border: 1px solid rgb(255, 196, 0);
+    display: inline-block;
+    padding: 6px 12px;
+	background-color: rgb(255, 174, 0);
+	font-weight: bolder;
+    cursor: pointer;
+	color: rgb(0, 174, 255);
+}
+
+input[type="submit"] {
+    display: none;
+}
+

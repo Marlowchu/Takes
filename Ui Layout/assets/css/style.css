@@ -43,17 +43,19 @@ h2, p {
   height: auto;
 }
 
-/* .left_area h3{
-    color: #fff;
-    margin: 0;
-    text-transform: uppercase;
-    font-size: 22px;
-    font-weight: 900;
-  }
-  
-  .left_area span{
-    color: #cce4e9;
-  } */
+.middle_Area {
+  margin-right: 100px;
+  width: 2351px;
+  transform: translate(1030px, -58px);
+
+}
+
+.searchBox  { 
+  font-size: 16px !important;
+  font-weight: 300 !important;
+  color: #eee !important;
+  line-height: 1.625 !important;
+}
 
 .Menu-btn {
   padding: 5px;
@@ -368,79 +370,79 @@ label #sidebar_btn:hover {
 
 .userPost_Title {
  position: absolute;
-  left: 10px;
+  left: -40px;
   box-sizing: border-box;
-  transform: translate(75%, 40%);
+  transform: translate(71%, 6%);
   display: block;
+  font-family: 'Oswald', sans-serif;
+  color: rgb(0, 174, 255);
+  font-size: 50px;
 
 }
 
 .userPost_Description {
- position: flex;
+  position: flex;
   left: 10px;
-  transform: translate(-20%, 200%);
+  transform: translate(44%, 243%);
   bottom: 10;
-  
-
+  width: 700px;
+  font-style: italic;
+  font-family: 'Oswald', sans-serif;
+  color: rgb(0, 174, 255);
+  font-size: 30px;
+  transform: translate(13%, 83%);
   
 }
 
-.postIcons {
-position: relative;
-transform: translate(-1%, -27%);
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 20px;
-  position: relative;
+.postButtons {
+  margin-top: 200px;
+  width: 455px;
+  position: absolute;
+  transform: translate(147%, -386%);
+
 
 }
 
-.commentIcon {
-  transform: translate(1490%, 0%);
-  width: 6%;
-  height: 6%;
-  display: block;
+.commentButton {
+ margin-right: 55px;
+ color: rgb(0, 204, 255);
+ border: none;
+ background-color: rgb(255, 153, 0);
+ border-radius: 8px;
+ box-shadow: 0px 4px 5px 1px rgba(0, 225, 255, 0.37);
+ font-size: 20px;
  
 }
 
-.likeIcon {
-  transform: translate(3000%, 53%);
-  width: 3%;
-  height: 5%;
-  display: block;
-  margin: 10px;
+.likeButton {
+  margin-right: 55px;
+  color: rgba(255, 166, 0, 0.664);
+  border: none;
+  background-color: rgb(255, 255, 255);
+  border-radius: 8px;
+  color: rgb(0, 204, 255);
+ border: none;
+ background-color: rgb(255, 153, 0);
+ border-radius: 8px;
+ box-shadow: 0px 4px 5px 1px rgba(0, 225, 255, 0.37);
+ font-size: 20px;
 }
 
 
-.replyIcon {
-  transform: translate(1772%, 90%);
-  width: 5%;
-  height: 5%;
-  display: block;
-  margin: 10px;
+.connectButton {
+  margin-right: 55px;
+  color: rgba(255, 166, 0, 0.664);
+  border: none;
+  background-color: rgb(255, 255, 255);
+  border-radius: 8px;
+  color: rgb(0, 204, 255);
+  border: none;
+  background-color: rgb(255, 153, 0);
+  border-radius: 8px;
+  box-shadow: 0px 4px 5px 1px rgba(0, 225, 255, 0.37);
+  font-size: 20px;
 }
 
-
-
-.commentText {
-position: absolute;
-  margin: 0px;
-  width: 500px;
-  transform: translate(128%, 180%);
-}
-
-.likeText {
-
-  margin: 0px;
-  width: 500px;
-  transform: translate(128%, 180%);
-}
-.replyText {
-
-  margin: 0px;
-  width: 500px;
-  transform: translate(128%, 180%);
-}
 
 
 /* Responsive CSS */
