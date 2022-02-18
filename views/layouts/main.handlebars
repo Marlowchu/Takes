@@ -56,12 +56,24 @@
         <img src="/assets/images/logo (2cents).png" class="profile_image" alt="">
         <h4>Dashboard</h4>
       </div>
-      <a href="#"><img class="site-Icons" src="/assets/images/home button_HouseYellow.png"><span class="menu-dash">Home</span></a>
-      <a href="#"><img class="site-Icons" src="/assets/images/Profile-Icon_YellowMan.png"><span class="menu-dash"><span>Profile</span></a>
+      {{!-- <a href="/"><img class="site-Icons" src="/assets/images/home button_HouseYellow.png"><span class="menu-dash">Home</span></a>
+      <a href="/profile"><img class="site-Icons" src="/assets/images/Profile-Icon_YellowMan.png"><span class="menu-dash"><span>Profile</span></a>
       <a href="#"><img class="site-Icons" src="/assets/images/Community-Icon_BlueManYellowGroup.png"><span class="menu-dash"></i><span>Community</span></a>
-      {{#if isMember}} <a href="#"><img class="site-Icons" src="/assets/images/Logout-Yellow.png"><span class="menu-dash"><span>Logout</span></a>
-      {{else}} <a href="#"><img class="site-Icons" src="/assets/images/Logout-Yellow.png"><span class="menu-dash"><span>Login</span></a>
-       {{/if}}
+      <a href="/login"><img class="site-Icons" src="/assets/images/Logout-Yellow.png"><span class="menu-dash"><span>Login</span></a>
+       --}}
+        {{#if logged_in}}
+      <a href="/"><img class="site-Icons" src="/assets/images/home button_HouseYellow.png"><span class="menu-dash">Home</span></a>
+      <a href="/profile"><img class="site-Icons" src="/assets/images/Profile-Icon_YellowMan.png"><span class="menu-dash"><span>Profile</span></a>
+      <a href="#"><img class="site-Icons" src="/assets/images/Community-Icon_BlueManYellowGroup.png"><span class="menu-dash"></i><span>Community</span></a>
+      <a ><img class="site-Icons no-button" id="logout" src="/assets/images/Logout-Yellow.png"><span class="menu-dash"><span>Logout</span></a>
+      
+        {{else}}
+      <a href="/"><img class="site-Icons" src="/assets/images/home button_HouseYellow.png"><span class="menu-dash">Home</span></a>
+      <a href="/profile"><img class="site-Icons" src="/assets/images/Profile-Icon_YellowMan.png"><span class="menu-dash"><span>Profile</span></a>
+      <a href="#"><img class="site-Icons" src="/assets/images/Community-Icon_BlueManYellowGroup.png"><span class="menu-dash"></i><span>Community</span></a>
+      <a href="/login"><img class="site-Icons" src="/assets/images/Logout-Yellow.png"><span class="menu-dash"><span>Login</span></a>
+      
+        {{/if}}
 
 
     </div>
@@ -83,6 +95,11 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+ <!-- Render script for logged in users only -->
+  {{#if logged_in}}
+  <script src="/js/logout.js"></script>
+  {{/if}}
 
 </body>
 </html>

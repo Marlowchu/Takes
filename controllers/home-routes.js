@@ -1,6 +1,7 @@
 const router = require('express').Router();
 // const Takes = require('../models/Takes.js');
 const { Takes, Users, Comment, Pick } = require('../models');
+const withAuth = require('../utils/auth');
 
 // Render the Main page of Takes.
 router.get('/', async (req, res) => {
@@ -43,7 +44,7 @@ router.get('/', async (req, res) => {
 router.get('/register', async (req, res) => {
 	try {
 		res.render('register', {
-			isMember: req.session.member
+	
 		}
 		);
 	} catch (err) {
@@ -53,33 +54,36 @@ router.get('/register', async (req, res) => {
 });
 
 // Render Login page.
-router.get('/login', async (req, res) => {
-	req.session.member ? res.redirect('/') :
-	res.render('login')
-	try {
-		res.render('login');
-	} catch (err) {
-		console.log(err);
-		res.status(500).json(err);
-	}
-});
+router.get('/login', (req, res) => {
+	if (req.session.logged_in) {
+		res.redirect('/');
+		return;
+	  }
+	
+	  res.render('login');
+	});
 
 
 // Render profile page when the user is signed in and clicks loge.
 
-router.get('/profile', async (req, res) => {
+router.get('/profile', withAuth, async (req, res) => {
 	try {
+		// Find the logged in user based on the session ID
+		const userData = await Users.findByPk(req.session.user_id, {
+		  attributes: { exclude: ['password'] },
+		  include: [{ model: Takes }],
+		});
+	
+		const user = userData.get({ plain: true });
+	
 		res.render('profile', {
-			isMember: req.session.member,
-			theUser: req.session.userInfo 
-		}
-		);
-	} catch (err) {
-		console.log(err);
+		  ...user,
+		  logged_in: true
+		});
+	  } catch (err) {
 		res.status(500).json(err);
-	}
-});
-
+	  }
+	});
 
 
 module.exports = router;
