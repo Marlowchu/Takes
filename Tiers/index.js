@@ -1,10 +1,12 @@
-// const fs = require('fs');
+const home = require('../controllers/home-routes')
+// const counts = document.getElementById('text').value(); 
 
 const Fan = require ('./fan');
 const Member = require ('./member');
 const RisingStar = require ('./risingStar');
 const Influencer = require ('./influencer');
 const AllAccess = require ('./allAccess');
+const req = require('express/lib/request');
 
 
 // const hierachy = hierachy()
@@ -14,7 +16,7 @@ console.log('Program Starting');
 let totalPoints = 0;
 // totalPoints = countVisit + comment + pick + take
 // // countVisit=  ('#text');
-
+// console.log(counts);
 // console.log(countVisit)
 
 const ranking = new Fan 
@@ -56,8 +58,8 @@ const hierachy = () => {
 hierachy();
     
 console.log('Program ending');
-    
-
+// countVisit= 
+// console.log(countVisit);
     
     // () =>
     
@@ -84,3 +86,5 @@ console.log('Program ending');
 // risingStar() 
 // influencer() 
 // allAccess()
+
+

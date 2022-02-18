@@ -8,6 +8,13 @@
         {{/each}}
     </h2>
     {{countVisit}}
+    {{ifCond}}
+
+
+    {{!-- {{#if countVisit == 1 }}
+    <h1>1</h1>
+    {{/if}} --}}
+    <button class=" addbutton">Add </button> 
     <main class="mainDisplay">
        <div class="postBox">
            <span class="postDetails">
@@ -33,5 +40,16 @@
 
    </main>
    <script src="/js/newPost.js"></script>
+   <script src="/js/function.js"></script>
+   <script>
+   {{!-- function show_image(scr, width, height, alt){
+    var img = document.createElement('img');
+    img.src = src;
+    img.width = width;
+    img.height = height;
+    img.alt = alt;
+
+    document.body.appendChild(img); --}}
+    </script>
 
 </section>

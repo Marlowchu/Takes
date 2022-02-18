@@ -1,10 +1,15 @@
-module.exports = {
-  format_time: (date) => {
-    return date.toLocaleTimeString();
-  },
-  format_date: (date) => {
-    return `${new Date(date).getMonth() + 1}/${new Date(date).getDate()}/${
-      new Date(date).getFullYear() + 5
-    }`;
-  },
-};
+
+
+
+  // module.exports  { 
+    
+  //   Handlebars.registerHelper('ifCond', (num) => {
+  //     return [num.one, num.two]
+  //   });
+  
+  //   // let number = {
+  //   //   one: 1,
+  //   //   two: 2,
+  //   //   three: 3,
+  //   // }
+  // }

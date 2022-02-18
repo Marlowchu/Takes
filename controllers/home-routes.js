@@ -25,6 +25,7 @@ router.get("/", async (req, res) => {
 });
 
 
+
 // Render registration page.
 router.get("/register", async (req, res) => {
   try {
