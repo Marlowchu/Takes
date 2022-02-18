@@ -1,0 +1,29 @@
+.container {
+    background: #e0f2fa;
+    border: 2.5px solid #4FDBFA;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 5px 1px rgba(0, 0, 0, 0.15);
+    border-radius: 16px;
+    height: 250px;
+    padding: 15px;
+    margin: 50px;
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.flex-parent-element {
+    display: flex;
+    width: 50%;
+  }
+  
+  .flex-child-element {
+    flex: 1;
+    border: 2px solid blueviolet;
+    margin: 10px;
+    align-items: center;
+  }
+  
+  .flex-child-element:first-child {
+    margin-right: 20px;
+    align-items: center;
+  }
