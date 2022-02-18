@@ -1,8 +1,5 @@
 const router = require('express').Router();
-const { Takes, Users, Comment, Pick } = require('../../models');
-// const takeUsers = require('../../models/takeUsers.js');
-// const Takes = require('../../models/Takes.js');
-// const picUsers = require('../../models/picUsers.js')
+
 const bcrypt = require('bcrypt');
 const fs = require('fs');
 const util = require('util');
@@ -12,6 +9,7 @@ const { uploadFile, getFileStream } = require('../../public/js/s3')
 const multer = require('multer');
 const withAuth = require('../../utils/auth');
 const req = require('express/lib/request');
+const { Takes, Users, Comment, Pick } = require('../../models');
 
 
 let storage = multer.diskStorage({
@@ -75,6 +73,24 @@ router.get('/post', withAuth, async (req, res) => {
 });
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Get all Users from the database.
 
 router.get('/', async (req, res) => {
@@ -86,17 +102,17 @@ router.get('/', async (req, res) => {
 });
 
 // Get User by Id
-router.get('/:id', async (req, res) => {
-	const idUser = await Users.findOne({
-		where: {
-			id: req.params.id,
-		},
-	});
+// router.get('/:id', async (req, res) => {
+// 	const idUser = await Users.findOne({
+// 		where: {
+// 			id: req.params.id,
+// 		},
+// 	});
 
-	!idUser
-		? res.status(404).json({ message: 'No User with that ID' })
-		: res.status(200).json(idUser);
-});
+// 	!idUser
+// 		? res.status(404).json({ message: 'No User with that ID' })
+// 		: res.status(200).json(idUser);
+// });
 
 // Delete User by Id
 router.delete('/:id', async (req, res) => {
@@ -143,7 +159,7 @@ router.post('/login', async (req, res) => {
 			return;
 		  }
 	  
-		  
+
 		  req.session.save(() => {
 			req.session.user_id = userData.id;
 			req.session.username = userData.username;
@@ -158,41 +174,7 @@ router.post('/login', async (req, res) => {
 	  });
 
 
-
-
-		// const cleanUserLogin = await userExist.get({ plain: true });
-
-		// if (!cleanUserLogin) {
-		// 	return res.status(404).json({ message: 'Email or password incorrect' });
-		// }
-		// req.session.save(() => {
-		// 	req.session.member = true
-			// req.session.user_id = dbUserData.id;
-      		// req.session.username = dbUserData.username;
-			
-		// });
-		
-		// res.status(200);
-
-		// const validPass = await bcrypt.compare(
-		// 	req.body.password,
-		// 	userExist.password
-		// );
-		// if (!userExist) {
-		// 	return res.status(400).send('Invalid Email or Password');
-		// }
-		// return res.status(200).json({ message: 'Welcome!' });
-
-
-// 	} catch (err) {
-// 		return res.status(500).json(err);
-// 	}
-// });
-
 router.post('/register', async (req, res) => {
-	
-	// const { username, email, password} = req.body
-	// const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
 	try {
 		const userData = await Users.create(req.body);
@@ -240,18 +222,49 @@ router.post('/logout', (req, res) => {
 
 
 // Recieve new post and persist the data into the database.
-router.post('/post',withAuth, async (req, res) => {
-    const newPost = await Takes.create({
+// router.post('/post',withAuth, async (req, res) => {
+//     const newPost = await Takes.create({
 
-		...req.body,
+// 		...req.body,
+// 		// user_id: req.session.user_id,
+// 		user_id: 1,
+// 		category: "random",
+
+//     })
+
+//     res.status(200).json(newPost)
+// });
+
+
+router.post('/post', async (req, res) => {
+	try {
+	const makePost = await Takes.create({
+		 
+		  ...req.body,
+		  user_id: req.session.user_id,
+		  category: "random",
+   
+	  })
+  
+	  let newPost = makePost.get({ plain: true });
+  
+	  const newPick = await Pick.create({
+		// ...req.body,
 		// user_id: req.session.user_id,
-		user_id: 1,
-		category: "random",
+		user_id: newPost.user_id,
+		take_id: newPost.id,
+	  });
+  
+	 res.json(200, (newPost, newPick))
+	} catch (err) {
+	  res.status(400).json(err);
+	}
+  })
 
-    })
 
-    res.status(200).json(newPost)
-});
+
+
+
 
 
 // Post route for accepting uploads to site.
@@ -276,15 +289,13 @@ router.post('/uploads', upload.single('profile-file'),  async(req, res, next) =>
   
 
 
-
   // pick route
 router.post('/pick', withAuth, async (req, res) => {
 	try {
 	  const newPick = await Pick.create({
 		...req.body,
-		// user_id: req.session.user_id,
-		user_id: 1,
-		// take_id: req.params.id,
+		user_id: req.session.user_id,
+		
 	  });
   
 	  res.status(200).json(newPick);
@@ -297,14 +308,13 @@ router.post('/pick', withAuth, async (req, res) => {
   // comment route
   
   router.post('/comment', withAuth, async (req, res) => {
-  // router.post('/comment', withAuth, async (req, res) => {
+  
 	try {
 	  const newProject = await Comment.create({
   
 		...req.body,
 		// user_name: "Chuck",
-		user_id: 1,
-		// user_id: req.session.user_id,
+		user_id: req.session.user_id,
 	  });
   
 	  res.status(200).json(newProject);
@@ -313,6 +323,151 @@ router.post('/pick', withAuth, async (req, res) => {
 	}
   });
   
+
+
+  router.get('/takelikes', async (req, res) => {
+	try {
+	  // Get all projects and JOIN with user data
+	  const projectData = await Takes.findAll({
+  
+		attributes: ["title"],
+		include: [
+		  {
+			model: Pick,
+			attributes: ["user_id", "take_id" ]
+		  },
+		],
+	  });
+  
+	  // Serialize data so the template can read it
+	  const projects = projectData.map((project) => project.get({ plain: true }));
+  
+	let take = []
+	// let lenght = []
+	projects.forEach(item => {
+  
+	  let num = item.picks.length
+	  take.push ({"title":item.title, "likes" : num})
+	  
+	});
+  
+	  res.send (take);
+  
+	} catch (err) {
+	  res.status(500).json(err);
+	}
+  });
+  
+  
+  // route to show people who like the same thinngs you do
+  router.get('/connects/:id', async (req, res) => {
+	try {
+	  const projectData = await Users.findByPk( req.params.id, {
+  
+		attributes: ["id",'username'],
+		include: [
+		  {
+			model: Pick,
+			attributes: ["take_id"],
+		  },
+		],
+	  });
+  
+	  let projects = projectData.get({ plain: true });
+  
+	  // array for user picks
+	  let myPicks = []
+  
+	  // username
+	  let myName = projects.username
+  
+	  // creating a array with only the users picks
+	   projects.picks.forEach(item => { myPicks.push (item.take_id)
+  
+		
+	  });
+  
+		// Get all users and picks
+	   const pullData = await Users.findAll({
+  
+		attributes: ["id",'username'],
+		include: [
+		  {
+			model: Pick,
+			attributes: ["take_id"],
+		  },
+		],
+	  });
+  
+	  // Clean data up so it's easier to work with
+	  const allData = pullData.map((project) => project.get({ plain: true }));
+	
+	  // create array to hold people that made the same picks as you
+		let matches = []
+  
+		// iterate through all users
+		allData.forEach(user => { 
+		  let test = 0
+		  let take =[]
+		  // if the names of the users don't match continue
+		  if (user.username !== myName) {
+  
+			// iterate through my picks
+			myPicks.forEach(item =>{
+  
+			  // iterate through current users picks
+			   for (let i = 0; i < user.picks.length; i++) {
+  
+			if (item === user.picks[i].take_id) {
+			  // test.push (user.user_name)
+			  test++
+			  take.push (item)
+			  i = user.picks.length
+			}
+			}
+		  })
+  
+		  }
+		  // if myself and the user has atleast a certain about of picks in common then add to matches
+		  if (test >= 1) {
+			matches.push ({"username" : user.username, "take": take})
+		  }
+		});
+	// send the matches
+	  res.send (matches);
+	
+	} catch (err) {
+	  res.status(500).json(err);
+	}
+  });
+  
+  
+  
+  router.get('/takecomments', async (req, res) => {
+	try {
+	  // Get all projects and JOIN with user data
+	  const projectData = await Takes.findAll({
+  
+		attributes: ["title", "description"],
+		include: [
+		
+		  {
+			model: Comment,
+			attributes: ["user_id", "text"],
+		  },
+		],
+	   
+	  });
+  
+	  // Serialize data so the template can read it
+	  const projects = projectData.map((project) => project.get({ plain: true }));
+  
+	  res.send (projects);
+	  
+	} catch (err) {
+	  res.status(500).json(err);
+	}
+  });
   
 
 module.exports = router;

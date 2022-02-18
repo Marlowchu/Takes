@@ -32,7 +32,8 @@ router.get('/', async (req, res) => {
 		res.render('homepage', {
 			theTakes,
 			countVisit: req.session.countVisit,
-			isMember: req.session.member
+			// isMember: req.session.member,
+			logged_in: req.session.logged_in 
 		});
 	} catch (err) {
 		console.log(err);
