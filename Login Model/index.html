@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login prompt</title>
+    <link rel="stylesheet" href="./assets/style.css">
+</head>
+
+<body>
+
+    <body class="body">
+        <button id="login" name="login" onclick="onDelete()">Login</button>  
+        <div id="confirmation" class="modal-container">
+            <div class="modal">
+                <section>
+                    <header class="modal-header">
+                        <span onclick="onCancel()">&times;</span>
+                        <h2>Please login to use this feature;)</h2>
+                    </header>
+                    
+                    <footer class="modal-footer">
+                        <button class="modal-button" onclick="onCancel()">Cancel</button>
+                        <button class="modal-button modal-confirm-button" onclick="onConfirm()">
+                            Login
+                        </button>
+                    </footer>
+                </section>
+            </div>
+        </div>
+        <script>
+            function onDelete() {
+                let confirmation = document.getElementById("confirmation");
+                if (!confirmation.classList.contains("modal-open")) {
+                    confirmation.classList.add("modal-open");
+                }
+            }
+
+            function onCancel() {
+                let confirmation = document.getElementById("confirmation");
+                confirmation.classList.remove("modal-open");
+            }
+
+            function onConfirm() {
+                onCancel();
+            }
+
+            document.addEventListener("DOMContentLoaded", () => {
+                document
+                    .getElementById("confirmation")
+                    .addEventListener("click", onCancel);
+                document
+                    .querySelector(".modal")
+                    .addEventListener("click", (e) => e.stopPropagation());
+            });
+        </script>
+    </body>
+
+</html>
