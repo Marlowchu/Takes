@@ -18,6 +18,10 @@ if (process.env.JAWSDB_URL) {
   );
 }
 
+// let sequelize; 
 
+// const URI = process.env.MYSQL_URL || process.env.JAWSDB_URL || "mysql://username:password@localhost:3006/databaseName"
+
+// sequelize = new Sequelize(URI)
 
 module.exports = sequelize;

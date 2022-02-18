@@ -76,15 +76,149 @@ router.get('/profile', withAuth, async (req, res) => {
 		});
 	
 		const user = userData.get({ plain: true });
+
+		res.send(user)
 	
-		res.render('profile', {
-		  ...user,
-		  logged_in: true
-		});
+		// res.render('profile', {
+		//   user,
+		//   chuck: req.session.user_name,
+		//   logged_in: true
+		// });
 	  } catch (err) {
 		res.status(500).json(err);
 	  }
 	});
 
+
+	router.get('/profiletest', async (req, res) => {
+		try {
+			// Find the logged in user based on the session ID
+			const userData = await Users.findByPk(5, {
+			  attributes: { exclude: ['password'] },
+			//   include: [{ model: Takes }],
+			include: [
+				{
+				  model: Takes,
+				//   attributes: ['username'],
+				},
+				{
+				  model: Pick,
+				//   attributes: ['text'],
+				},
+			  ],
+			});
+			
+			const money = "lots of money"
+			const user = userData.get({ plain: true });
+
+// user takes and likes on the take
+			const takeData = await Takes.findAll({
+				where: {
+				//   user_id: req.session.user_id,
+				  user_id: 5,
+				},
+				include: [
+					{
+					  model: Pick,
+					//   attributes: ['username'],
+					},
+				  ],
+			  });
+			  const theTakes = takeData.map((blog) => blog.get({ plain: true }));
+			//   const cleantakes = takeData.get({ plain: true });
+
+// connections
+// const projectData = await Users.findByPk( req.params.id, {
+	const projectData = await Users.findByPk( 5, {
+  
+	attributes: ["id",'username'],
+	include: [
+	  {
+		model: Pick,
+		attributes: ["take_id"],
+	  },
+	],
+  });
+
+  let projects = projectData.get({ plain: true });
+
+  // array for user picks
+  let myPicks = []
+
+  // username
+  let myName = projects.username
+
+  // creating a array with only the users picks
+   projects.picks.forEach(item => { myPicks.push (item.take_id)
+
+	
+  });
+
+	// Get all users and picks
+   const pullData = await Users.findAll({
+
+	attributes: ["id",'username'],
+	include: [
+	  {
+		model: Pick,
+		attributes: ["take_id"],
+	  },
+	],
+  });
+
+  // Clean data up so it's easier to work with
+  const allData = pullData.map((project) => project.get({ plain: true }));
+
+  // create array to hold people that made the same picks as you
+	let matches = []
+
+	// iterate through all users
+	allData.forEach(user => { 
+	  let test = 0
+	  let take =[]
+	  // if the names of the users don't match continue
+	  if (user.username !== myName) {
+
+		// iterate through my picks
+		myPicks.forEach(item =>{
+
+		  // iterate through current users picks
+		   for (let i = 0; i < user.picks.length; i++) {
+
+		if (item === user.picks[i].take_id) {
+		  // test.push (user.user_name)
+		  test++
+		  take.push ({item})
+		  i = user.picks.length
+		}
+		}
+	  })
+
+	  }
+	  // if myself and the user has atleast a certain about of picks in common then add to matches
+	  if (test >= 1) {
+		matches.push ({"username" : user.username, "take": take})
+	  }
+	});
+// send the matches
+//   res.send (matches);
+
+
+
+	
+			// res.send({takeData})
+		
+			res.render('profile', {
+				theTakes,
+			// "takes":takeData,
+			"connections":matches,
+			// "users": user,
+			
+			  logged_in: true
+			});
+		  } catch (err) {
+			res.status(500).json(err);
+		  }
+		});
 
 module.exports = router;
