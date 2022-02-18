@@ -67,33 +67,33 @@ router.get('/login', (req, res) => {
 
 // Render profile page when the user is signed in and clicks loge.
 
-router.get('/profile', withAuth, async (req, res) => {
-	try {
-		// Find the logged in user based on the session ID
-		const userData = await Users.findByPk(req.session.user_id, {
-		  attributes: { exclude: ['password'] },
-		  include: [{ model: Takes }],
-		});
+// router.get('/profile', withAuth, async (req, res) => {
+// 	try {
+// 		// Find the logged in user based on the session ID
+// 		const userData = await Users.findByPk(req.session.user_id, {
+// 		  attributes: { exclude: ['password'] },
+// 		  include: [{ model: Takes }],
+// 		});
 	
-		const user = userData.get({ plain: true });
+// 		const user = userData.get({ plain: true });
 
-		res.send(user)
+// 		res.send(user)
 	
-		// res.render('profile', {
-		//   user,
-		//   chuck: req.session.user_name,
-		//   logged_in: true
-		// });
-	  } catch (err) {
-		res.status(500).json(err);
-	  }
-	});
+// 		// res.render('profile', {
+// 		//   user,
+// 		//   chuck: req.session.user_name,
+// 		//   logged_in: true
+// 		// });
+// 	  } catch (err) {
+// 		res.status(500).json(err);
+// 	  }
+// 	});
 
 
-	router.get('/profiletest', async (req, res) => {
+	router.get('/profile',withAuth, async (req, res) => {
 		try {
 			// Find the logged in user based on the session ID
-			const userData = await Users.findByPk(5, {
+			const userData = await Users.findByPk(req.session.user_id, {
 			  attributes: { exclude: ['password'] },
 			//   include: [{ model: Takes }],
 			include: [
@@ -129,7 +129,7 @@ router.get('/profile', withAuth, async (req, res) => {
 
 // connections
 // const projectData = await Users.findByPk( req.params.id, {
-	const projectData = await Users.findByPk( 5, {
+	const projectData = await Users.findByPk( req.session.user_id, {
   
 	attributes: ["id",'username'],
 	include: [
