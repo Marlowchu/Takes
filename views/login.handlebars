@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,22 +6,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/takeStyle.css">
     <title>Takes</title>
-</head>
+</head> --}}
 
-<body>
+  <section class="login-background">  
 
-    <header class="header">
-        <h1 class="title">LOGIN</h1>
+
+
+                <h1 class="login-title">LOGIN</h1>
+                
+                <div class="login">
+                    <div class="profile_info">
+                        <img src="/img/images/logo (2cents).png" class="login-Logo" alt="">
+                
+                    </div>
+                    
+                    <form id="login-form" type="POST" class="login-form">
+                        <label  for="email" class="emailText">Email:</label><br>
+                    <hr class="hr">
+                        <input class="email-login loginEmail" type="email" placeholder="Enter Email">
+                    
+                        <label  for="password" class="logPasswordText">Password:</label><br>
+                    <hr class="hr">
+                        <input class="password-login loginPassword" type="password" placeholder="Enter Password">
+                    
+                        <button type="submit" class="logBtn">LOGIN:</button>
+                         
+
+                    </form>
+                    <a class="register" href="/register">register here</a>
+                    
         
-        <div class="sign-up">
-            <form id="login-form" type="POST">
-                
-                <input class="loginEmail" type="email" id="email" name="email" placeholder="Enter Email">
-            <hr>
-                <input class="loginPassword" type="password" id="password" name="password" placeholder="Enter Password">
-            <hr>
-                
-                <button id="loginBtn" type="submit" >Login to:</button>
+                </div>
+      
+
+    
+    
+    </section>
+
+    
+
+               
             
 
             </form>
@@ -30,6 +54,7 @@
         </div>
     </header>
         {{!-- <script src="/js/register.js"></script> --}}
-        <script src="/js/login.js"></script>
+        {{!-- <script src="/js/login.js"></script> --}}
 
-</body>
+
+ <script src="/js/login.js"></script>

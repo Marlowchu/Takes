@@ -1,13 +1,13 @@
 <section>
     <div>
-        This is the profile page!
+        
         <aside>
             <div class="profileCard">
                 <img class="profileAvatar" src="{{userPic}}">
                 <div class="statBox">
                     Memeber Visits: {{countVisit}}
                     <hr>
-                    <b>User</b>: {{username}}  
+                    <b>{{format_date profile}}</b>: {{username}}  
                     <hr>
                     <b>Role</b>: All Access!
                     <hr>
@@ -19,8 +19,38 @@
         </aside>
     </div>
 
+
 </section>
 
+
+
+<section class="userInfo">
+    
+
+    <div class="interestBox">
+        Connections
+        <hr>
+
+        <div>
+          
+     {{#each connections as |con|}}
+    <div class="col-md">
+    <p>You and {{con.username}} liked</p>
+        {{#each con.take as |id|}}
+         <div class="col-md">
+         <p>take id {{id.item}}</p>
+        </div>
+        {{/each}}
+    </div>
+    {{/each}}
+           
+        </div>
+
+    </div>
+    
+
+    
+</section>
 <section class="userInfo">
     <div class="profilePostBox">
         <form method="POST" action="/api/users/uploads" enctype="multipart/form-data">
@@ -29,24 +59,39 @@
         <input type="file" class="profilePic" name="profile-file" required/>
     </div>
     <div>
-        <input type="submit" value="Upload" />
+        <input class="profileUpload" type="submit" value="Upload" />
     </div>
 </form>
-        To Cents:
-        post
 
-    <hr>
-    </div>
-    
+<div class="userInfo2"> 
+                <div class="interestBox">
+                    My "To:Cents" Posts:
 
-    <div class="interestBox">
-        Likes/interest/Comments:
-        <hr>
+                    {{#each theTakes as |take|}}
+                <div class="col-md">
+                <p>Title is "{{take.title}}", number of likes is "{{take.picks.length}}"</p>
+                {{!-- <p>This take has {{take.picks.length}} likes</p> --}}
+                </div>
+                {{/each}}
+                    <hr>
+            
+                </div>
 
-    </div>
+            </div>
+
+            <div class="userInfo3">
+
+            
+                <div class="interestBox">
+                    Likes/Interest/Comments:
+                    <hr>
+
+                </div>
+
+                </div>
+
+
 </section>
     <script src="/js/fileUpload.js"></script>
     <script src="/js/s3.js"></script>
-    {{#if isMember}}
     <script src="/js/logout.js"></script>
-    {{/if}}

@@ -21,6 +21,7 @@ Takes.init(
 		category: {
 			type: DataTypes.STRING,
 			allowNull: false,
+			defaultValue: "Sports"
 		  },
 		title: {
 			type: DataTypes.STRING,
