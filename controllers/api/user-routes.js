@@ -5,19 +5,85 @@ const bcrypt = require("bcrypt");
 
 // Get all Users from the database.
 
-
-
 // Get User by Id
 router.get("/:id", async (req, res) => {
   const idUser = await takeUsers.findOne({
     where: {
       id: req.params.id,
-    }
+    },
   });
 
   !idUser
     ? res.status(404).json({ message: "No User with that ID" })
     : res.status(200).json(idUser);
+});
+
+// Hierachy Route
+
+router.get("/:id", async (req, res) => {
+  const idUser = await takeUsers.findOne({
+    where: {
+      id: req.params.id,
+    },
+  });
+
+  req.session.save(() => {
+    req.session.countVisit
+      ? req.session.countVisit++
+      : (req.session.countVisit = 1);
+  });
+  const btn = document.querySelector(".addbutton");
+  let count = 0;
+
+  btn.addEventListener("click", () => {
+    req.session.countVisit;
+    console.log(countVisits);
+
+    const target = document.querySelector(".hierarchyPics");
+
+    switch (req.session.countVisit) {
+      case 1:
+      case 2:
+        console.log("Fan Ranking");
+        image = `<img src="./img/fan_image.png">`;
+
+        target.innerHTML = image;
+        // target= InnerHtml="<img>Icon</img>"
+        break;
+      case 3:
+      case 4:
+        // case 5:
+        console.log("Member Ranking");
+
+        image = `<img src="./img/member_image.jpeg">`;
+        target.innerHTML = image;
+        // expected output: "Mangoes and papayas are $2.79 a pound."
+        break;
+      case 5:
+      case 6:
+        // case 7:
+        console.log("Rising Star Ranking");
+        image = `<img src="./img/Rising_star.png">`;
+
+        target.innerHTML = image;
+        break;
+      case 7:
+      case 8:
+        console.log("Influencer Ranking");
+        image = `<img src="./img/influencer_image.png">`;
+
+        target.innerHTML = image;
+        break;
+      case 9:
+      case 10:
+        console.log("All Access Ranking");
+        image = `<img src="./img/all_access_image.png">`;
+
+        target.innerHTML = image;
+      default:
+        console.log(`All Access Ranking`);
+    }
+  });
 });
 
 // Delete User by Id

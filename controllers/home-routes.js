@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const Takes = require("../models/Takes.js");
 
+
 // Render the Main page of Takes.
 router.get("/", async (req, res) => {
   req.session.save(() => {
