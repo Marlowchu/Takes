@@ -53,3 +53,60 @@ postBtn.addEventListener('click', async (e) => {
 // 		);
 // 		return (onDashboard.innerHTML = thePost.reverse());
 // 	});
+
+
+function myFunction(id) {
+	var x = document.getElementById(`myDIV${id}`);
+	if (x.style.display === "none") {
+	  x.style.display = "block";
+	} else {
+	  x.style.display = "none";
+	}
+  }
+
+  const commentButtonHandler = async (id) => {
+
+	const text = document.querySelector(`#commentText${id}`).value.trim();
+
+		const take_id = id;
+	
+		const response = await fetch(`/api/users/comment`, {
+		  method: 'POST',
+		  body: JSON.stringify({ text, take_id }),
+		  headers: {
+			'Content-Type': 'application/json',
+		  },
+		});
+	
+		if (response.ok) {
+			document.location.replace('/');
+		} else {
+		  alert('Failed to add comment');
+		}
+	  
+	};
+	
+
+
+	const likeButtonHandler = async (id) => {
+	
+
+			const take_id = id;
+		
+		
+			const response = await fetch("/api/users/pick", {
+			  method: 'POST',
+			  body: JSON.stringify({ take_id }),
+			  headers: {
+				'Content-Type': 'application/json',
+			  },
+			});
+		
+			if (response.ok) {
+				alert('success')
+			//   document.location.replace('/');
+			} else {
+			  alert('Failed to add like');
+			}
+		  
+		};

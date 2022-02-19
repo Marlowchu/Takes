@@ -11,7 +11,7 @@ const unlinkFile= util.promisify(fs.unlink)
 const { normalize } = require('path')
 const { uploadFile, getFileStream } = require('../../public/js/s3')
 const multer = require('multer');
-
+const withAuth = require('../../utils/auth');
 
 let storage = multer.diskStorage({
   
@@ -34,6 +34,44 @@ let upload = multer({ storage, limits: {
 } ,
 	theFilter
 });
+
+
+  // pick route
+  router.post('/pick', withAuth, async (req, res) => {
+	try {
+	  const newPick = await Pick.create({
+		...req.body,
+		user_id: req.session.user_id,
+		
+	  });
+  
+	  res.status(200).json(newPick);
+  
+	} catch (err) {
+	  res.status(400).json(err);
+	}
+  });
+  
+  // comment route
+  
+  router.post('/comment', withAuth, async (req, res) => {
+  
+	try {
+	  const newProject = await Comment.create({
+  
+		...req.body,
+		// user_name: "Chuck",
+		user_id: req.session.user_id,
+	  });
+  
+	  res.status(200).json(newProject);
+	} catch (err) {
+	  res.status(400).json(err);
+	}
+  });
+  
+
+
 
 // Get all Profile pics from database.
 router.get('/uploads/:key', async (req, res) => {
@@ -84,17 +122,17 @@ router.get('/', async (req, res) => {
 });
 
 // Get User by Id
-router.get('/:id', async (req, res) => {
-	const idUser = await Users.findOne({
-		where: {
-			id: req.params.id,
-		},
-	});
+// router.get('/:id', async (req, res) => {
+// 	const idUser = await Users.findOne({
+// 		where: {
+// 			id: req.params.id,
+// 		},
+// 	});
 
-	!idUser
-		? res.status(404).json({ message: 'No User with that ID' })
-		: res.status(200).json(idUser);
-});
+// 	!idUser
+// 		? res.status(404).json({ message: 'No User with that ID' })
+// 		: res.status(200).json(idUser);
+// });
 
 // Delete User by Id
 router.delete('/:id', async (req, res) => {
@@ -111,32 +149,61 @@ router.delete('/:id', async (req, res) => {
 
 // Register new user to Takes site!
 
-router.post('/register', async (req, res) => {
+// router.post('/register', async (req, res) => {
 	
-	// const { username, email, password} = req.body
-	// const hashedPassword = await bcrypt.hash(req.body.password, 10);
+// 	// const { username, email, password} = req.body
+// 	// const hashedPassword = await bcrypt.hash(req.body.password, 10);
+
+// 	try {
+// 		const dbUserData = await Users.create(req.body);
+// 		const cleanUser = dbUserData.get({ plain: true });
+// 		req.session.save(() => {
+// 			req.session.member = true
+// 			req.session.user_id = cleanUser.id;
+//       		req.session.username = cleanUser.username;
+// 			req.session.logged_in = true;
+			 	
+// 		});
+		
+
+// 		if (!cleanUser) {
+// 			return res.status(404).json({ message: 'Email or password taken' });
+// 		}
+		 
+// 		res.status(200).json(cleanUser);
+		
+// 	} catch (err) {
+// 		res.status(500).json(err);
+// 	}
+// });
+
+
+
+router.post('/register', async (req, res) => {
 
 	try {
-		const dbUserData = await Users.create(req.body);
-		const cleanUser = dbUserData.get({ plain: true });
+		const userData = await Users.create(req.body);
+		
+	
+		// change from is member
 		req.session.save(() => {
+			req.session.user_id = userData.id;
+			req.session.username = userData.username;
+			req.session.logged_in = true;
 			req.session.member = true
-			req.session.user_id = cleanUser.id;
-      		req.session.username = cleanUser.username;
-			 	
+			
+			res.status(200).json(userData);	 	
 		});
-		
-
-		if (!cleanUser) {
-			return res.status(404).json({ message: 'Email or password taken' });
-		}
-		 
-		res.status(200).json(cleanUser);
-		
+			
+	
 	} catch (err) {
 		res.status(500).json(err);
 	}
 });
+
+
+
+
 
 // Login in current User, check database if exist.
 
@@ -159,6 +226,8 @@ router.post('/login', async (req, res) => {
 			req.session.theName = cleanUserLogin.username
 			req.session.theEmail = cleanUserLogin.email
 			req.session.profilePic = cleanUserLogin.profile_pic
+			req.session.user_id = cleanUserLogin.id;
+			req.session.logged_in = true;
 			
 			
 			
@@ -181,13 +250,30 @@ router.post('/login', async (req, res) => {
 
 // Recieve new post and persist the data into the database.
 router.post('/post', async (req, res) => {
-    const newPost = await Takes.create({
-        title: req.body.title,
-        description: req.body.description
-    })
+	try {
+	const makePost = await Takes.create({
+		 
+		  ...req.body,
+		  user_id: req.session.user_id,
+		  category: "random",
+   
+	  })
+  
+	  let newPost = makePost.get({ plain: true });
+  
+	  const newPick = await Pick.create({
+		// ...req.body,
+		// user_id: req.session.user_id,
+		user_id: newPost.user_id,
+		take_id: newPost.id,
+	  });
+  
+	 res.json(200, (newPost, newPick))
+	} catch (err) {
+	  res.status(400).json(err);
+	}
+  })
 
-    res.status(200).json(newPost)
-});
 
 
 // Post route for accepting uploads to site.
@@ -218,8 +304,18 @@ router.post('/uploads', upload.single('profile-file'),  async(req, res, next) =>
   });
 
 // Function to logout the User and destroy session.
+// router.post('/logout', (req, res) => {
+// 	if (req.session.member) {
+// 	  req.session.destroy(() => {
+// 		res.status(204).end();
+// 	  });
+// 	} else {
+// 	  res.status(404).end();
+// 	}
+//   });
+  
 router.post('/logout', (req, res) => {
-	if (req.session.member) {
+	if (req.session.logged_in) {
 	  req.session.destroy(() => {
 		res.status(204).end();
 	  });
@@ -227,6 +323,155 @@ router.post('/logout', (req, res) => {
 	  res.status(404).end();
 	}
   });
+
+
+
+
+  router.get('/takelikes', async (req, res) => {
+	try {
+	  // Get all projects and JOIN with user data
+	  const projectData = await Takes.findAll({
+  
+		attributes: ["title"],
+		include: [
+		  {
+			model: Pick,
+			attributes: ["user_id", "take_id" ]
+		  },
+		],
+	  });
+  
+	  // Serialize data so the template can read it
+	  const projects = projectData.map((project) => project.get({ plain: true }));
+  
+	let take = []
+	// let lenght = []
+	projects.forEach(item => {
+  
+	  let num = item.picks.length
+	  take.push ({"title":item.title, "likes" : num})
+	  
+	});
+  
+	  res.send (take);
+  
+	} catch (err) {
+	  res.status(500).json(err);
+	}
+  });
+  
+  
+  // route to show people who like the same thinngs you do
+  router.get('/connects/:id', async (req, res) => {
+	try {
+	  const projectData = await Users.findByPk( req.params.id, {
+  
+		attributes: ["id",'username'],
+		include: [
+		  {
+			model: Pick,
+			attributes: ["take_id"],
+		  },
+		],
+	  });
+  
+	  let projects = projectData.get({ plain: true });
+  
+	  // array for user picks
+	  let myPicks = []
+  
+	  // username
+	  let myName = projects.username
+  
+	  // creating a array with only the users picks
+	   projects.picks.forEach(item => { myPicks.push (item.take_id)
+  
+		
+	  });
+  
+		// Get all users and picks
+	   const pullData = await Users.findAll({
+  
+		attributes: ["id",'username'],
+		include: [
+		  {
+			model: Pick,
+			attributes: ["take_id"],
+		  },
+		],
+	  });
+  
+	  // Clean data up so it's easier to work with
+	  const allData = pullData.map((project) => project.get({ plain: true }));
+	
+	  // create array to hold people that made the same picks as you
+		let matches = []
+  
+		// iterate through all users
+		allData.forEach(user => { 
+		  let test = 0
+		  let take =[]
+		  // if the names of the users don't match continue
+		  if (user.username !== myName) {
+  
+			// iterate through my picks
+			myPicks.forEach(item =>{
+  
+			  // iterate through current users picks
+			   for (let i = 0; i < user.picks.length; i++) {
+  
+			if (item === user.picks[i].take_id) {
+			  // test.push (user.user_name)
+			  test++
+			  take.push (item)
+			  i = user.picks.length
+			}
+			}
+		  })
+  
+		  }
+		  // if myself and the user has atleast a certain about of picks in common then add to matches
+		  if (test >= 1) {
+			matches.push ({"username" : user.username, "take": take})
+		  }
+		});
+	// send the matches
+	  res.send (matches);
+	
+	} catch (err) {
+	  res.status(500).json(err);
+	}
+  });
+  
+  
+  
+  router.get('/takecomments', async (req, res) => {
+	try {
+	  // Get all projects and JOIN with user data
+	  const projectData = await Takes.findAll({
+  
+		attributes: ["title", "description"],
+		include: [
+		
+		  {
+			model: Comment,
+			attributes: ["user_id", "text"],
+		  },
+		],
+	   
+	  });
+  
+	  // Serialize data so the template can read it
+	  const projects = projectData.map((project) => project.get({ plain: true }));
+  
+	  res.send (projects);
+	  
+	} catch (err) {
+	  res.status(500).json(err);
+	}
+  });
   
 
+
+  
 module.exports = router;

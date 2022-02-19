@@ -4,6 +4,14 @@ const Takes = require('./Takes');
 const Pick = require('./Pick');
 const { pick } = require('lodash');
 
+Users.hasMany(Takes, {
+  // foreignKey: 'user_id',
+  onDelete: 'CASCADE'
+});
+
+Takes.belongsTo(Users, {
+  // foreignKey: 'user_id'
+});
 Users.hasMany(Pick, {
   // foreignKey: 'user_id',
   onDelete: 'CASCADE'

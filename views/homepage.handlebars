@@ -1,42 +1,3 @@
-{{!-- <section>
-    <h2>
-        {{#each takes as |take|}}
-        {{take.title}}
-        <hr>
-        {{take.description}}
-        <textarea></textarea>
-        {{/each}}
-    </h2>
-    <main class="mainDisplay">
-        {{countVisit}}
-       <div class="postBox">
-           <span class="postDetails">
-               <div class=""><img class="userIcon" src="/uploads/Imhotep(Sculp).jpg"></div>
-               <textarea name="newPostTitle" class="titleBox" cols="30" rows="10" placeholder="Title" ></textarea>
-               <textarea name="newPost" class="textBox" cols="30" rows="10" placeholder="add your 2&#162..." ></textarea>
-               <button class="addPostBtn" >+Add</button>
-           </span>
-
-       </div>
- 
-       <div class="dashboard">
-           <ul class="postList">
-
-           </ul>
-           
-       </div>
-       
-       <div>
-           
-       </div>
-
-   </main>
-   <script src="/js/newPost.js"></script>
-
-</section> --}}
-
-
-{{!-- dorothy's --}}
 
  <div class="Dashboard"> 
 
@@ -57,7 +18,9 @@
                     <div class="form-group">                
                       <textarea class="form-control textBox" id="postDescription" rows="3" placeholder="add your 2&#162..."></textarea>
                     </div>
+                    {{#if logged_in}}
                     <button class="addPostBtn" >+Add</button>
+                    {{/if}}
                 </form>
             </div>
       </div>
@@ -75,6 +38,56 @@
               <img class="live_Post_icon" src="/img/images/live-streaming icon (blue).png">
             </div>
       </div>
+
+{{#if logged_in}}
+{{#each theTakes as |take|}}
+       
+      <div class="sitePosts">
+        <div class="userPost">
+          <img class="userIcon" src="/img/images/tocents profile icon - cropped.png">
+          <h2 class="userPost_Title">{{take.title}}</h2>
+          <p class="userPost_Description">..."{{take.description}}"
+          </p>
+        </div>
+{{!-- hidden text box for comment --}}
+        <div class="postIcon postButtons">
+        
+             <div id="myDIV{{take.id}}" style="display: none;">
+        
+            <textarea class=" textBox" id="commentText{{take.id}}" placeholder="comment"></textarea>
+
+            <button class="btn btn-primary" id="submitbtn" data-id ="{{take.id}}" onclick="commentButtonHandler({{take.id}})">submit</button> 
+            </div>
+
+{{!-- display comments --}}
+        {{#if take.comments}}
+ 
+          <h3 class="col-md">Comments</h3>
+         {{#each take.comments as |comment|}}
+        <div class="col-md">
+        <p>{{comment.text}}</p>
+         </div>
+        {{/each}}
+         {{/if}}
+
+        </div>
+          <button class=" commentButton" id="commentbtn" data-id ="{{take.id}}" onclick="myFunction({{take.id}})">comment</button>  
+          <button class=" likeButton" id="likebtn" data-id ="{{take.id}}" onclick="likeButtonHandler({{take.id}})">like</button>
+          <br>
+
+
+           {{!-- <div id="myDIV{{take.id}}" style="display: none;">
+        
+         <textarea class=" textBox" id="commentText" placeholder="comment"></textarea>
+
+         <button class="btn btn-primary" id="submitbtn" data-id ="{{take.id}}" onclick="commentButtonHandler()">submit</button> 
+         </div> --}}
+      </div>
+
+      
+       {{/each}}
+
+    {{else}}
 
 
 {{#each theTakes as |take|}}
@@ -102,15 +115,15 @@
           <h3 class="col-md">Comments</h3>
          {{#each take.comments as |comment|}}
         <div class="col-md">
-        <p>{{comment.text}} created by user {{comment.user_id}}</p>
+        <p>{{comment.text}}</p>
          </div>
         {{/each}}
          {{/if}}
 
         </div>
-          <button class=" commentButton" id="commentbtn" data-id ="{{take.id}}" onclick="myFunction({{take.id}})">comment</button>  
+          {{!-- <button class=" commentButton" id="commentbtn" data-id ="{{take.id}}" onclick="myFunction({{take.id}})">comment</button>  
           <button class=" likeButton" id="likebtn" data-id ="{{take.id}}" onclick="likeButtonHandler({{take.id}})">like</button>
-          <br>
+          <br> --}}
 
 
            {{!-- <div id="myDIV{{take.id}}" style="display: none;">
@@ -123,6 +136,9 @@
 
       
        {{/each}}
+
+
+       {{/if}}
     </div>
 
          <script src="/js/newPost.js"></script>
