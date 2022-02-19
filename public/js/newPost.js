@@ -8,49 +8,15 @@ const postDetails = () => {
 	return post;
 };
 
-// post.addEventListener('keypress', postDetails);
+post.addEventListener('keypress', postDetails);
 
-// postBtn.addEventListener('click', async (e) => {
-// 	e.preventDefault
-// 	const description = document.querySelector('.textBox').value.trim();
-// 	const title = document.querySelector('.titleBox').value.trim();
-
-// 	setTimeout(() => {console.log("this is the second message")}, 3000)
-	 
-// 	if (description && title) {
-// 		const response = await fetch('/api/users/post', {
-// 			method: 'POST',
-// 			body: JSON.stringify({ title, description }),
-// 			headers: { 'Content-Type': 'application/json' },
-// 		}).then(() => {
-// 			document.querySelector('.textBox').value = '';
-// 			document.querySelector('.titleBox').value = '';
-// 			// setTimeout(() => {
-// 			// 	window.location.reload();
-// 			// }, 2000) 
-
-
-// 		});
-
-// 		console.log(response);
-// 	}
-
-// 	const clearIt = () => {
-// 		console.log('ran');
-// 		document.querySelector('.textBox').value = '';
-// 		document.querySelector('.titleBox').value = '';
-// 	};
-// });
-
-
-
-const postFormHandler = async (event) => {
-	event.preventDefault();
-  
+postBtn.addEventListener('click', async (e) => {
+	e.preventDefault
 	const description = document.querySelector('.textBox').value.trim();
 	const title = document.querySelector('.titleBox').value.trim();
-  
 
+	setTimeout(() => {console.log("this is the second message")}, 3000)
+	 
 	if (title && description) {
 		const response = await fetch('/api/users/post', {
 			method: 'POST',
@@ -63,8 +29,32 @@ const postFormHandler = async (event) => {
 	  } else {
 		alert('Failed to create post');
 	  }
-	}
-  };
+	};
+});
+
+
+
+// const postFormHandler = async (event) => {
+// 	event.preventDefault();
+  
+// 	const description = document.querySelector('.textBox').value.trim();
+// 	const title = document.querySelector('.titleBox').value.trim();
+  
+
+// 	if (title && description) {
+// 		const response = await fetch('/api/users/post', {
+// 			method: 'POST',
+// 			body: JSON.stringify({ title, description }),
+// 			headers: { 'Content-Type': 'application/json' },
+// 	  });
+  
+// 	  if (response.ok) {
+// 		document.location.replace('/');
+// 	  } else {
+// 		alert('Failed to create post');
+// 	  }
+// 	}
+//   };
 
 
 
