@@ -59,17 +59,6 @@ router.get('/register', async (req, res) => {
 	}
 });
 
-// Render Login page.
-// router.get('/login', async (req, res) => {
-// 	req.session.member ? res.redirect('/') :
-// 	res.render('login')
-// 	try {
-// 		res.render('login');
-// 	} catch (err) {
-// 		console.log(err);
-// 		res.status(500).json(err);
-// 	}
-// });
 
 router.get('/login', (req, res) => {
 	if (req.session.logged_in) {
@@ -81,24 +70,6 @@ router.get('/login', (req, res) => {
 	});
 
 
-
-// Render profile page when the user is signed in and clicks loge.
-
-// router.get('/profile', async (req, res) => {
-// 	try {
-// 		res.render('profile', {
-// 			isMember: req.session.member,
-// 			userPic: req.session.profilePic,
-// 			username: req.session.theName,
-// 			countVisit: req.session.countVisit
-			
-// 		}
-// 		);
-// 	} catch (err) {
-// 		console.log(err);
-// 		res.status(500).json(err);
-// 	}
-// });
 
 router.get('/profile',withAuth, async (req, res) => {
 	try {
@@ -118,8 +89,6 @@ router.get('/profile',withAuth, async (req, res) => {
 		  ],
 		});
 		
-		// const money = "lots of money"
-		// const user = userData.get({ plain: true });
 
 // user takes and likes on the take
 		const takeData = await Takes.findAll({
@@ -138,7 +107,7 @@ router.get('/profile',withAuth, async (req, res) => {
 		//   const cleantakes = takeData.get({ plain: true });
 
 // connections
-// const projectData = await Users.findByPk( req.params.id, {
+
 const projectData = await Users.findByPk( req.session.user_id, {
 
 attributes: ["id",'username'],

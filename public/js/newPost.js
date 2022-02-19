@@ -33,50 +33,6 @@ postBtn.addEventListener('click', async (e) => {
 });
 
 
-
-// const postFormHandler = async (event) => {
-// 	event.preventDefault();
-  
-// 	const description = document.querySelector('.textBox').value.trim();
-// 	const title = document.querySelector('.titleBox').value.trim();
-  
-
-// 	if (title && description) {
-// 		const response = await fetch('/api/users/post', {
-// 			method: 'POST',
-// 			body: JSON.stringify({ title, description }),
-// 			headers: { 'Content-Type': 'application/json' },
-// 	  });
-  
-// 	  if (response.ok) {
-// 		document.location.replace('/');
-// 	  } else {
-// 		alert('Failed to create post');
-// 	  }
-// 	}
-//   };
-
-
-
-
-
-
-
-// Function to fetch all post and send them to the Dom.
-
-// fetch(`api/users/post`)
-// 	.then((response) => response.json())
-// 	.then((data) => {
-// 		for (i = 0; i < data; i++) {}
-// 		const thePost = data.map(
-// 			(allPost) => `<li class="newPost">
-//         ${allPost.title}\n <div class="theDescription">${allPost.description}</div> 
-//         </li>`
-// 		);
-// 		return (onDashboard.innerHTML = thePost.reverse());
-// 	});
-
-
 function myFunction(id) {
 	var x = document.getElementById(`myDIV${id}`);
 	if (x.style.display === "none") {

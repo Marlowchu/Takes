@@ -1,8 +1,6 @@
 const router = require('express').Router();
 const { Takes, Users, Comment, Pick } = require('../../models');
-// deprecated code v
-// const takeUsers = require('../../models/takeUsers.js');
-// const Takes = require('../../models/Takes.js');
+
 const picUsers = require('../../models/picUsers.js')
 const bcrypt = require('bcrypt');
 const fs = require('fs');
@@ -79,26 +77,10 @@ router.get('/uploads/:key', async (req, res) => {
 	const readstream = getFileStream(key)
 
 	readstream.pipe(res)
-	// const theUsersPic = await picUsers.findAll({
-		
-	// }); 
-	// req.session.member ? res.redirect('/profile') :
-	// res.render('profile')
-
+	
 	res.status(200).json(key);
 });
 
-// Get Profile pics from database by Id.
-// router.get('/uploads/:id', async (req, res) => {
-// 	const theUsersPic = await picUsers.findOne({
-// 		where: {
-// 			id: req.params.id
-// 		}
-		
-// 	});
-
-// 	res.status(200).json(theUsersPic);
-// });
 
 // Get route to retrieve all post from database.
 router.get('/post', async (req, res) => {
@@ -121,18 +103,6 @@ router.get('/', async (req, res) => {
 	res.status(200).json(allUsers);
 });
 
-// Get User by Id
-// router.get('/:id', async (req, res) => {
-// 	const idUser = await Users.findOne({
-// 		where: {
-// 			id: req.params.id,
-// 		},
-// 	});
-
-// 	!idUser
-// 		? res.status(404).json({ message: 'No User with that ID' })
-// 		: res.status(200).json(idUser);
-// });
 
 // Delete User by Id
 router.delete('/:id', async (req, res) => {
@@ -148,36 +118,6 @@ router.delete('/:id', async (req, res) => {
 });
 
 // Register new user to Takes site!
-
-// router.post('/register', async (req, res) => {
-	
-// 	// const { username, email, password} = req.body
-// 	// const hashedPassword = await bcrypt.hash(req.body.password, 10);
-
-// 	try {
-// 		const dbUserData = await Users.create(req.body);
-// 		const cleanUser = dbUserData.get({ plain: true });
-// 		req.session.save(() => {
-// 			req.session.member = true
-// 			req.session.user_id = cleanUser.id;
-//       		req.session.username = cleanUser.username;
-// 			req.session.logged_in = true;
-			 	
-// 		});
-		
-
-// 		if (!cleanUser) {
-// 			return res.status(404).json({ message: 'Email or password taken' });
-// 		}
-		 
-// 		res.status(200).json(cleanUser);
-		
-// 	} catch (err) {
-// 		res.status(500).json(err);
-// 	}
-// });
-
-
 
 router.post('/register', async (req, res) => {
 
@@ -200,9 +140,6 @@ router.post('/register', async (req, res) => {
 		res.status(500).json(err);
 	}
 });
-
-
-
 
 
 // Login in current User, check database if exist.
@@ -279,8 +216,7 @@ router.post('/post', async (req, res) => {
 // Post route for accepting uploads to site.
 
 router.post('/uploads', upload.single('profile-file'),  async(req, res, next) => {
-	// req.file is the `profile-file` file
-	// req.body will hold the text fields, if there were any
+	
 	const file = req.file
 	console.log("Path:",req.file.path)
 	const result = await uploadFile(file)
@@ -303,16 +239,6 @@ router.post('/uploads', upload.single('profile-file'),  async(req, res, next) =>
 	return res.send(response)
   });
 
-// Function to logout the User and destroy session.
-// router.post('/logout', (req, res) => {
-// 	if (req.session.member) {
-// 	  req.session.destroy(() => {
-// 		res.status(204).end();
-// 	  });
-// 	} else {
-// 	  res.status(404).end();
-// 	}
-//   });
   
 router.post('/logout', (req, res) => {
 	if (req.session.logged_in) {
@@ -323,8 +249,6 @@ router.post('/logout', (req, res) => {
 	  res.status(404).end();
 	}
   });
-
-
 
 
   router.get('/takelikes', async (req, res) => {
