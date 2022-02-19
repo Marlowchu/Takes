@@ -1,6 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection')
-const Sequelize = require('sequelize');
+// const Sequelize = require('sequelize');
 
 class Takes extends Model { }
 
@@ -32,22 +32,20 @@ Takes.init(
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
-	// createdAt: {
-	// 	field: 'created_at',
-	// 	type: Sequelize.DATE,
-	// },
-	// updatedAt: {
-	// 	field: 'updated_at',
-	// 	type: Sequelize.DATE,
-	// },
-	},
-	
-	{
-		sequelize,
-		freezeTableName: true,
-		underscored: true,
-		modelName: 'takes',
-	}
+		date_created: {
+			type: DataTypes.DATE,
+			allowNull: true,
+			defaultValue: DataTypes.NOW,
+		  },
+		  
+		},
+		{
+		  sequelize,
+		  timestamps: false,
+		  freezeTableName: true,
+		  underscored: true,
+		  modelName: 'takes',
+		}
 );
 
 module.exports = Takes;
