@@ -26,7 +26,7 @@ postBtn.addEventListener('click', async (e) => {
 			document.querySelector('.textBox').value = '';
 			document.querySelector('.titleBox').value = '';
 			setTimeout(() => {
-				window.location.reload();
+				document.location.replace('/');
 			}, 2000) 
 		});
 
