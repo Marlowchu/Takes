@@ -114,6 +114,21 @@
         {{/each}}
          {{/if}}
 
+    </div>
+       
+          <button class="btn btn-primary" id="commentbtn" data-id ="{{take.id}}" onclick="myFunction({{take.id}})">comment</button>  
+          <button class="btn btn-primary" id="likebtn" data-id ="{{take.id}}" onclick="likeButtonHandler({{take.id}})">like</button>
+      
+          <br>
+
+
+           {{!-- <div id="myDIV{{take.id}}" style="display: none;">
+        
+         <textarea class=" textBox" id="commentText" placeholder="comment"></textarea>
+
+         <button class="btn btn-primary" id="submitbtn" data-id ="{{take.id}}" onclick="commentButtonHandler()">submit</button> 
+         </div> --}}
+      </div>
       
        {{/each}}
 
